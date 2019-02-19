@@ -11,5 +11,5 @@ import UIKit
 
 extension UIColor {
     static let mainPurple = UIColor(red: 180/255, green: 185/255, blue: 208/255, alpha: 1)
-    static let smoothWhite = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1)
+    static let smoothWhite = UIColor(red: 253/255, green: 253/255, blue: 253/255, alpha: 1)
 }

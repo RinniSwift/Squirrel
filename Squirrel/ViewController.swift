@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 
     // MARK: - Outlets
     @IBOutlet weak var cardView: UIView!
+    @IBOutlet weak var signUpButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +30,13 @@ extension ViewController {
         
         // card view
         cardView.layer.cornerRadius = 15
-        cardView.frame = CGRect(x: 0, y: 0, width: view.frame.width - 60, height: (view.frame.height / 2) + 40)
+        cardView.frame = CGRect(x: 0, y: 0, width: view.frame.width - 100, height: (view.frame.height / 2) + 20)
         cardView.center.x = self.view.center.x
-        cardView.center.y = self.view.center.y + 30
+        cardView.center.y = self.view.center.y
         cardView.backgroundColor = .smoothWhite
+        
+        // button
+        signUpButton.layer.cornerRadius = 8
     }
 }
 
