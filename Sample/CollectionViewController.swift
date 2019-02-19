@@ -8,23 +8,44 @@
 
 import UIKit
 
-class CollectionViewController: UIViewController {
-
+class CollectionViewController: UIViewController, UICollectionViewDelegateFlowLayout {
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
 
-        // Do any additional setup after loading the view.
+        flowLayout()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func flowLayout() {
+        let layout =  collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let width = view.frame.size.width / 3
+        layout.itemSize = CGSize(width: width, height: width)
     }
-    */
 
+}
+
+extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 3
+    }
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        <#code#>
+//    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 15
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "something", for: indexPath) as! SampleCollectionViewCell
+        cell.backgroundColor = .red
+        return cell
+    }
 }

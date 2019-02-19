@@ -18,8 +18,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         UISetup()
     }
-
-
 }
 
 extension ViewController {
@@ -30,7 +28,6 @@ extension ViewController {
         
         // card view
         cardView.layer.cornerRadius = 15
-        cardView.frame = CGRect(x: 0, y: 0, width: view.frame.width - 100, height: (view.frame.height / 2) + 20)
         cardView.center.x = self.view.center.x
         cardView.center.y = self.view.center.y
         cardView.backgroundColor = .smoothWhite
@@ -39,4 +36,3 @@ extension ViewController {
         signUpButton.layer.cornerRadius = 8
     }
 }
-
