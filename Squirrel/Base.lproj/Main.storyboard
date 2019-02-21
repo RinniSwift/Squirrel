@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rr2-1P-qsa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kdR-cc-BJv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -223,6 +223,38 @@
             </objects>
             <point key="canvasLocation" x="804" y="26.53673163418291"/>
         </scene>
+        <!--Log In View Controller-->
+        <scene sceneID="hIm-3E-f3Y">
+            <objects>
+                <viewController id="kdR-cc-BJv" customClass="LogInViewController" customModule="Squirrel" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rDK-v6-yje">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S9N-7I-2OS">
+                                <rect key="frame" x="50" y="203" width="275" height="261"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odT-0K-KeK">
+                                <rect key="frame" x="184" y="464" width="141" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="signInButtonSticker"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4b-59-7dI">
+                                <rect key="frame" x="50" y="154" width="141" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="signInAniSticker"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92798517020000004" green="0.93591040280000004" blue="0.93788216000000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <viewLayoutGuide key="safeArea" id="NFj-kZ-jBb"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PjH-X7-wfz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1063.2" y="742.5787106446777"/>
+        </scene>
         <!--Collection View Controller-->
         <scene sceneID="RsZ-lN-PtJ">
             <objects>
@@ -256,7 +288,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qct-M1-t6I">
-                                            <rect key="frame" x="16" y="12" width="85" height="28"/>
+                                            <rect key="frame" x="16" y="32" width="85" height="28"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="28" id="vCf-nB-HST"/>
                                             </constraints>
@@ -297,5 +329,7 @@
         <image name="acorn" width="100" height="100"/>
         <image name="menu" width="100" height="100"/>
         <image name="profilePic" width="96" height="96"/>
+        <image name="signInAniSticker" width="158" height="57"/>
+        <image name="signInButtonSticker" width="158" height="57"/>
     </resources>
 </document>
