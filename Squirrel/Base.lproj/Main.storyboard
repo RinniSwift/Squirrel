@@ -237,13 +237,13 @@
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uws-l7-TSg">
                                     <size key="itemSize" width="132" height="127"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="20" height="60"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="something" id="Jgh-oG-7Lq" customClass="SampleCollectionViewCell" customModule="Squirrel" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="132" height="127"/>
+                                        <rect key="frame" x="10" y="60" width="132" height="127"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="132" height="127"/>
@@ -251,6 +251,28 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="something" id="KpN-M0-QJm" customClass="SampleCollectionReusableView" customModule="Squirrel" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qct-M1-t6I">
+                                            <rect key="frame" x="16" y="12" width="85" height="28"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="28" id="vCf-nB-HST"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Qct-M1-t6I" firstAttribute="leading" secondItem="KpN-M0-QJm" secondAttribute="leadingMargin" constant="8" id="QZu-gH-kKj"/>
+                                        <constraint firstAttribute="bottom" secondItem="Qct-M1-t6I" secondAttribute="bottom" id="gtE-eU-YLe"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="categoryTitle" destination="Qct-M1-t6I" id="YO4-1S-u2G"/>
+                                    </connections>
+                                </collectionReusableView>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
