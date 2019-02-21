@@ -13,7 +13,9 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.setGradientView(colorOne: .smoothBlueBG, colorTwo: .smoothWhiteBG)
+        
     }
 
 }

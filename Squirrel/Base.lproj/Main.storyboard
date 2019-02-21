@@ -231,23 +231,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S9N-7I-2OS">
-                                <rect key="frame" x="50" y="203" width="275" height="261"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odT-0K-KeK">
-                                <rect key="frame" x="184" y="464" width="141" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="signInButtonSticker"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4b-59-7dI">
-                                <rect key="frame" x="50" y="154" width="141" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="signInAniSticker"/>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Pwo-Iy-MQD">
+                                <rect key="frame" x="50" y="138" width="275" height="424"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signInAniSticker" translatesAutoresizingMaskIntoConstraints="NO" id="4ZM-Wf-EH9">
+                                        <rect key="frame" x="0.0" y="0.0" width="158" height="57"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S9N-7I-2OS">
+                                        <rect key="frame" x="0.0" y="57" width="275" height="310"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odT-0K-KeK">
+                                        <rect key="frame" x="0.0" y="367" width="275" height="57"/>
+                                        <state key="normal" image="signInButtonSticker"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="odT-0K-KeK" secondAttribute="trailing" id="28q-5p-ku9"/>
+                                    <constraint firstAttribute="bottom" secondItem="odT-0K-KeK" secondAttribute="bottom" id="CQc-K2-nXU"/>
+                                    <constraint firstItem="odT-0K-KeK" firstAttribute="leading" secondItem="Pwo-Iy-MQD" secondAttribute="leading" id="bar-xt-TDC"/>
+                                    <constraint firstItem="odT-0K-KeK" firstAttribute="top" secondItem="S9N-7I-2OS" secondAttribute="bottom" id="dsy-YC-IoI"/>
+                                    <constraint firstAttribute="trailing" secondItem="S9N-7I-2OS" secondAttribute="trailing" id="wn1-j3-p1k"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.92798517020000004" green="0.93591040280000004" blue="0.93788216000000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="Pwo-Iy-MQD" firstAttribute="centerX" secondItem="rDK-v6-yje" secondAttribute="centerX" id="Io9-ZR-a2i"/>
+                            <constraint firstItem="NFj-kZ-jBb" firstAttribute="bottom" secondItem="Pwo-Iy-MQD" secondAttribute="bottom" constant="105" id="os7-Hj-Jek"/>
+                            <constraint firstItem="Pwo-Iy-MQD" firstAttribute="leading" secondItem="NFj-kZ-jBb" secondAttribute="leading" constant="50" id="sRx-lD-FVU"/>
+                            <constraint firstItem="Pwo-Iy-MQD" firstAttribute="top" secondItem="NFj-kZ-jBb" secondAttribute="top" constant="118" id="tA9-db-12x"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="NFj-kZ-jBb"/>
                     </view>
                 </viewController>
