@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 extension UIView {
+    
     func setGradientView(colorOne: UIColor, colorTwo: UIColor) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
@@ -20,4 +21,5 @@ extension UIView {
         
         layer.insertSublayer(gradientLayer, at: 0)
     }
+    
 }

@@ -1,5 +1,5 @@
 //
-//  LogInViewController.swift
+//  MainViewController.swift
 //  Squirrel
 //
 //  Created by Rinni Swift on 2/21/19.
@@ -8,13 +8,11 @@
 
 import UIKit
 
-class LogInViewController: UIViewController {
+class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.setGradientView(colorOne: .smoothBlueBG, colorTwo: .smoothWhiteBG)
-        
+
     }
 
 }
