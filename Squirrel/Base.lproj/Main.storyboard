@@ -419,16 +419,16 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ujn-c9-EGk">
-                                            <rect key="frame" x="23" y="18.5" width="329" height="25"/>
+                                            <rect key="frame" x="23" y="29" width="329" height="25"/>
                                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Ujn-c9-EGk" firstAttribute="centerY" secondItem="rmz-Uz-IAE" secondAttribute="centerY" id="DzY-bU-mcE"/>
                                         <constraint firstItem="Ujn-c9-EGk" firstAttribute="leading" secondItem="rmz-Uz-IAE" secondAttribute="leadingMargin" constant="15" id="VSq-qF-UMe"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Ujn-c9-EGk" secondAttribute="trailing" constant="15" id="fFf-ZW-3yC"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Ujn-c9-EGk" secondAttribute="bottom" id="wul-Gz-cV0"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="categoryTitle" destination="Ujn-c9-EGk" id="kJG-b6-VCn"/>

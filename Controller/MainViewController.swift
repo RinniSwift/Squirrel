@@ -34,6 +34,16 @@ class MainViewController: UIViewController {
         let height = (view.frame.size.width - 20) / 3
         layout.itemSize = CGSize(width: width, height: height)
     }
+    
+    func setShadow(cell: UIView) {
+        cell.layer.shadowOffset = CGSize(width: 0, height: 10)
+        cell.layer.shadowRadius = 20
+        cell.layer.shadowColor = UIColor.black.cgColor
+        cell.layer.shadowOpacity = 0.5
+        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 8, height: 8)).cgPath
+        cell.layer.shouldRasterize = true
+        cell.layer.rasterizationScale = UIScreen.main.scale
+    }
 
 }
 
@@ -47,6 +57,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "linkCell", for: indexPath) as! LinkCollectionViewCell
         cell.backgroundColor = .white
+        cell.layer.cornerRadius = 8
         return cell
     }
     
@@ -60,6 +71,6 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         header.categoryTitle.text = sampleSectionTitle[indexPath.section]
         return header
     }
-    
+
     
 }
