@@ -63,10 +63,10 @@
 		A4B4937E2218C00C00A23F42 = {
 			isa = PBXGroup;
 			children = (
-				A4B90324221FB9EB001D3CDF /* Extras */,
 				A4B4939C2218C05E00A23F42 /* Models */,
 				A4504E56221F478300BD1121 /* Controller */,
 				A4B493892218C00C00A23F42 /* Squirrel */,
+				A4B90324221FB9EB001D3CDF /* Extras */,
 				A4F423C4221CAD5F00141A97 /* Sample */,
 				A4B493882218C00C00A23F42 /* Products */,
 			);
@@ -348,7 +348,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V63UZ8ZMFC;
-				INFOPLIST_FILE = Squirrel/Info.plist;
+				INFOPLIST_FILE = Extras/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -366,7 +366,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V63UZ8ZMFC;
-				INFOPLIST_FILE = Squirrel/Info.plist;
+				INFOPLIST_FILE = Extras/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
