@@ -24,8 +24,16 @@ class MainViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        flowLayout()
     }
     
+    // MARK: - Functions
+    func flowLayout() {
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let width = (view.frame.size.width - 40) / 2
+        let height = (view.frame.size.width - 20) / 3
+        layout.itemSize = CGSize(width: width, height: height)
+    }
 
 }
 
