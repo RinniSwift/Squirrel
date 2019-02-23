@@ -16,8 +16,8 @@ class MainViewController: UIViewController {
     // MARK: - Variables
     var sampleSectionTitle: [String] = ["SPD 1.2", "Healthy Recipes", "Sports"]
     var sampleCellItem: [String: [String]] = ["SPD 1.2": ["industry contacts", "something else", "happy class", "something else"],
-                                              "Healthy Recipes": ["cooking", "chicken pie", "apple moringa", "something else"],
-                                              "Sports": ["soccer", "football", "PE", "something else"]]
+                                              "Healthy Recipes": ["cooking", "chicken pie", "something else"],
+                                              "Sports": ["soccer", "football"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +52,8 @@ class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        let index = sampleSectionTitle[section]
+        return (sampleCellItem[index]?.count)!
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -60,9 +61,8 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         cell.backgroundColor = .white
         
         let index = sampleSectionTitle[indexPath.section]
-        let sect = sampleCellItem[index]
-        print(sect)
-        cell.cellLinksTitle.text = sect![indexPath.item]
+        let sectItem = sampleCellItem[index]
+        cell.cellLinksTitle.text = sectItem![indexPath.item]
         cell.layer.cornerRadius = 8
         return cell
     }
