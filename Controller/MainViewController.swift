@@ -15,6 +15,9 @@ class MainViewController: UIViewController {
     
     // MARK: - Variables
     var sampleSectionTitle: [String] = ["SPD 1.2", "Healthy Recipes", "Sports"]
+    var sampleCellItem: [String: [String]] = ["SPD 1.2": ["industry contacts", "something else", "happy class", "something else"],
+                                              "Healthy Recipes": ["cooking", "chicken pie", "apple moringa", "something else"],
+                                              "Sports": ["soccer", "football", "PE", "something else"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,20 +38,18 @@ class MainViewController: UIViewController {
         layout.itemSize = CGSize(width: width, height: height)
     }
     
-    func setShadow(cell: UIView) {
-        cell.layer.shadowOffset = CGSize(width: 0, height: 10)
-        cell.layer.shadowRadius = 20
+    func shadow(cell: UIView) {
         cell.layer.shadowColor = UIColor.black.cgColor
-        cell.layer.shadowOpacity = 0.5
-        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 8, height: 8)).cgPath
-        cell.layer.shouldRasterize = true
-        cell.layer.rasterizationScale = UIScreen.main.scale
+        cell.layer.masksToBounds = false
+        cell.layer.shadowOffset = .zero
+        cell.layer.shadowOpacity = 0.1
+        cell.layer.shadowRadius = 10
+        cell.layer.shadowPath = UIBezierPath(rect: view.bounds).cgPath
     }
 
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
@@ -57,9 +58,18 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "linkCell", for: indexPath) as! LinkCollectionViewCell
         cell.backgroundColor = .white
+        
+        let index = sampleSectionTitle[indexPath.section]
+        let sect = sampleCellItem[index]
+        print(sect)
+        cell.cellLinksTitle.text = sect![indexPath.item]
         cell.layer.cornerRadius = 8
         return cell
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//
+//    }
     
     // SECTION HEADER
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -71,6 +81,5 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         header.categoryTitle.text = sampleSectionTitle[indexPath.section]
         return header
     }
-
     
 }
