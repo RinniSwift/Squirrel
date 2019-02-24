@@ -20,17 +20,14 @@ class CategoryViewController: UIViewController {
     }
     
     // MARK: - Variables
-    var titleString: String? //{
-//        didSet {
-//            if let titleString = titleString {
-//                categoryTitle.text = titleString
-//            }
-//        }
-//    }
+    var titleString: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.setGradientView(colorOne: .smoothBlueBG, colorTwo: .smoothWhiteBG)
+        categoryTitle.text = titleString
+        
     }
 
 }
