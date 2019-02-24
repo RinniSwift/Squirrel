@@ -16,5 +16,9 @@ class LogInViewController: UIViewController {
         view.setGradientView(colorOne: .smoothBlueBG, colorTwo: .smoothWhiteBG)
         
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
 }
