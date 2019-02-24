@@ -16,8 +16,17 @@ class CategoryViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func backButtonTapped(_ sender: UIButton) {
-        print("back button tapped")
+        self.dismiss(animated: true, completion: nil)
     }
+    
+    // MARK: - Variables
+    var titleString: String? //{
+//        didSet {
+//            if let titleString = titleString {
+//                categoryTitle.text = titleString
+//            }
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

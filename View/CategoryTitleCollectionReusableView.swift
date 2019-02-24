@@ -10,6 +10,22 @@ import UIKit
 
 class CategoryTitleCollectionReusableView: UICollectionReusableView {
     
-    @IBOutlet weak var categoryTitle: UILabel!
+    // MARK: - Variable
+    var mainVC: UIViewController? = nil
     
+    // MARK: - Outlets
+    @IBOutlet weak var categoryTitleButton: UIButton!
+    
+    // MARK: - Actions
+    @IBAction func categoryTitleButtonTapped(_ sender: UIButton) {
+        
+        let categorTitle = categoryTitleButton.titleLabel?.text
+        
+        // PRESENT CategoryViewController
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        // instantiating the *CategoryViewController*
+        let controller = storyBoard.instantiateViewController(withIdentifier: "categoryViewID") as! CategoryViewController
+        controller.titleString = categorTitle
+        mainVC!.present(controller, animated: true, completion: nil)
+    }
 }

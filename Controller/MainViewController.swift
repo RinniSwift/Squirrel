@@ -44,7 +44,6 @@ class MainViewController: UIViewController {
         cell.layer.shadowRadius = 10
         cell.layer.shadowPath = UIBezierPath(rect: view.bounds).cgPath
     }
-
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -72,7 +71,8 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "categoryTitle", for: indexPath) as! CategoryTitleCollectionReusableView
-        header.categoryTitle.text = sampleSectionTitle[indexPath.section]
+        header.categoryTitleButton.setTitle(sampleSectionTitle[indexPath.section], for: .normal)
+        header.mainVC = self
         return header
     }
     

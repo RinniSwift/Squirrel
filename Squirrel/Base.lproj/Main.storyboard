@@ -435,20 +435,24 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ujn-c9-EGk">
-                                            <rect key="frame" x="23" y="29" width="329" height="25"/>
-                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
-                                            <color key="textColor" red="0.20784313725490194" green="0.33333333333333331" blue="0.51372549019607838" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vr3-X1-wUb">
+                                            <rect key="frame" x="23" y="18" width="329" height="36"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                            <state key="normal" title="Category Title">
+                                                <color key="titleColor" red="0.20784313730000001" green="0.33333333329999998" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="categoryTitleButtonTapped:" destination="rmz-Uz-IAE" eventType="touchUpInside" id="7m6-rp-Uee"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Ujn-c9-EGk" firstAttribute="leading" secondItem="rmz-Uz-IAE" secondAttribute="leadingMargin" constant="15" id="VSq-qF-UMe"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Ujn-c9-EGk" secondAttribute="trailing" constant="15" id="fFf-ZW-3yC"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Ujn-c9-EGk" secondAttribute="bottom" id="wul-Gz-cV0"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="vr3-X1-wUb" secondAttribute="trailing" constant="15" id="7yv-SJ-wwa"/>
+                                        <constraint firstItem="vr3-X1-wUb" firstAttribute="leading" secondItem="rmz-Uz-IAE" secondAttribute="leadingMargin" constant="15" id="IsE-zX-LjR"/>
+                                        <constraint firstItem="vr3-X1-wUb" firstAttribute="bottom" secondItem="rmz-Uz-IAE" secondAttribute="bottomMargin" id="jQ6-tB-SVm"/>
                                     </constraints>
                                     <connections>
-                                        <outlet property="categoryTitle" destination="Ujn-c9-EGk" id="kJG-b6-VCn"/>
+                                        <outlet property="categoryTitleButton" destination="vr3-X1-wUb" id="z9b-4p-cxK"/>
                                     </connections>
                                 </collectionReusableView>
                             </collectionView>
@@ -476,7 +480,7 @@
         <!--Category View Controller-->
         <scene sceneID="kXV-7u-Hd3">
             <objects>
-                <viewController id="wAg-no-dlb" customClass="CategoryViewController" customModule="Squirrel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="categoryViewID" id="wAg-no-dlb" customClass="CategoryViewController" customModule="Squirrel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AKX-08-0wu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
