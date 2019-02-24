@@ -15,9 +15,7 @@ class MainViewController: UIViewController {
     
     // MARK: - Variables
     var sampleSectionTitle: [String] = ["SPD 1.2", "Healthy Recipes", "Sports"]
-    var sampleCellItem: [String: [String]] = ["SPD 1.2": ["industry contacts", "something else", "happy class", "something else"],
-                                              "Healthy Recipes": ["cooking", "chicken pie", "something else"],
-                                              "Sports": ["soccer", "football"]]
+    var sampleCellItem: [String: [String]] = ["SPD 1.2": ["industry contacts", "something else", "happy class", "something else"], "Healthy Recipes": ["cooking", "chicken pie", "something else"], "Sports": ["soccer", "football"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,10 +64,6 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         cell.layer.cornerRadius = 8
         return cell
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//
-//    }
     
     // SECTION HEADER
     func numberOfSections(in collectionView: UICollectionView) -> Int {
