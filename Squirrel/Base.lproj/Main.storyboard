@@ -514,9 +514,48 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Nhr-nr-2BR">
+                                <rect key="frame" x="0.0" y="71" width="375" height="596"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iBQ-b0-eEM">
+                                    <size key="itemSize" width="125" height="129"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="10"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="linkCell" id="IE6-Ic-eEi" customClass="CategoriesLinkCollectionViewCell" customModule="Squirrel" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="0.0" width="125" height="129"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="125" height="129"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Link title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mI1-AU-SeM">
+                                                    <rect key="frame" x="30.5" y="52.5" width="64" height="24"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
+                                                    <color key="textColor" red="0.20784313730000001" green="0.33333333329999998" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="mI1-AU-SeM" firstAttribute="centerY" secondItem="IE6-Ic-eEi" secondAttribute="centerY" id="UMf-PR-mGe"/>
+                                            <constraint firstItem="mI1-AU-SeM" firstAttribute="centerX" secondItem="IE6-Ic-eEi" secondAttribute="centerX" id="YHi-Ku-kLN"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="linkTitle" destination="mI1-AU-SeM" id="1mT-kx-YJX"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Nhr-nr-2BR" firstAttribute="top" secondItem="2ge-ad-d2P" secondAttribute="bottom" constant="15" id="1dn-wJ-0xE"/>
+                            <constraint firstItem="Nhr-nr-2BR" firstAttribute="bottom" secondItem="WhA-xp-kkB" secondAttribute="bottom" id="NrZ-JK-nZk"/>
+                            <constraint firstItem="Nhr-nr-2BR" firstAttribute="leading" secondItem="WhA-xp-kkB" secondAttribute="leading" id="gxC-f3-Md3"/>
+                            <constraint firstItem="Nhr-nr-2BR" firstAttribute="trailing" secondItem="WhA-xp-kkB" secondAttribute="trailing" id="id8-23-0yb"/>
                             <constraint firstItem="2ge-ad-d2P" firstAttribute="top" secondItem="WhA-xp-kkB" secondAttribute="top" constant="10" id="kvN-JB-tiA"/>
                             <constraint firstItem="2ge-ad-d2P" firstAttribute="leading" secondItem="WhA-xp-kkB" secondAttribute="leading" constant="15" id="ls1-7E-PiK"/>
                             <constraint firstAttribute="trailing" secondItem="2ge-ad-d2P" secondAttribute="trailing" constant="15" id="peP-yy-Yib"/>
@@ -526,6 +565,7 @@
                     <connections>
                         <outlet property="backButton" destination="mtR-I7-ChH" id="bHB-PR-Zvv"/>
                         <outlet property="categoryTitle" destination="APd-nC-2Wp" id="hka-g7-Fwy"/>
+                        <outlet property="collectionView" destination="Nhr-nr-2BR" id="Epx-i1-lFW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZGl-rE-Oa1" userLabel="First Responder" sceneMemberID="firstResponder"/>
