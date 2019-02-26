@@ -14,6 +14,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     // MARK: - Variables
+    // MOCK DATA
     var sampleSectionTitle: [String] = ["SPD 1.2", "Healthy Recipes", "Sports"]
     var sampleCellItem: [String: [String]] = ["SPD 1.2": ["industry contacts", "something else", "happy class", "something else"], "Healthy Recipes": ["cooking", "chicken pie", "something else"], "Sports": ["soccer", "football"]]
     
@@ -34,15 +35,6 @@ class MainViewController: UIViewController {
         let width = (view.frame.size.width - 40) / 2
         let height = (view.frame.size.width - 20) / 3
         layout.itemSize = CGSize(width: width, height: height)
-    }
-    
-    func shadow(cell: UIView) {
-        cell.layer.shadowColor = UIColor.black.cgColor
-        cell.layer.masksToBounds = false
-        cell.layer.shadowOffset = .zero
-        cell.layer.shadowOpacity = 0.1
-        cell.layer.shadowRadius = 10
-        cell.layer.shadowPath = UIBezierPath(rect: view.bounds).cgPath
     }
 }
 
@@ -75,5 +67,4 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         header.mainVC = self
         return header
     }
-    
 }
