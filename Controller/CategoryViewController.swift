@@ -65,4 +65,11 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // PRESENT the LinkViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "cellsLinkController") as! LinkViewController
+        controller.linkCellTitleString = links[indexPath.item]
+        self.present(controller, animated: true, completion: nil)
+    }
 }
