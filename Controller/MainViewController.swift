@@ -36,6 +36,10 @@ class MainViewController: UIViewController {
         let height = (view.frame.size.width - 20) / 3
         layout.itemSize = CGSize(width: width, height: height)
     }
+    
+    func underlineButton(text: String) {
+        
+    }
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -62,8 +66,12 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let attributedString = NSAttributedString(
+            string: NSLocalizedString(sampleSectionTitle[indexPath.section], comment: ""), attributes:  [NSAttributedString.Key.font: UIFont(name: "Avenir-Medium", size: 17.0)!, NSAttributedString.Key.foregroundColor : UIColor.blueText, NSAttributedString.Key.underlineStyle: 1.0]
+        )
+        
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "categoryTitle", for: indexPath) as! CategoryTitleCollectionReusableView
-        header.categoryTitleButton.setTitle(sampleSectionTitle[indexPath.section], for: .normal)
+        header.categoryTitleButton.setAttributedTitle(attributedString, for: .normal)
         header.mainVC = self
         return header
     }
