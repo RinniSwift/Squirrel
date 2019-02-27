@@ -36,10 +36,6 @@ class MainViewController: UIViewController {
         let height = (view.frame.size.width - 20) / 3
         layout.itemSize = CGSize(width: width, height: height)
     }
-    
-    func underlineButton(text: String) {
-        
-    }
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {

@@ -1,5 +1,5 @@
 //
-//  LogInViewController.swift
+//  SignInViewController.swift
 //  Squirrel
 //
 //  Created by Rinni Swift on 2/21/19.
@@ -8,11 +8,19 @@
 
 import UIKit
 
-class LogInViewController: UIViewController {
+class SignInViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: - Outlets
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    
+    // MARK: - Actions
+    @IBAction func switchToSignUpTapped(_ sender: UIButton) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        // instantiating the *SignUpViewController*
+        let controller = storyBoard.instantiateViewController(withIdentifier: "signUpVC") as! SignUpViewController
+        self.present(controller, animated: false, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,9 +59,4 @@ class LogInViewController: UIViewController {
             view.frame.origin.y = 0
         }
     }
-}
-
-
-extension LogInViewController: UITextFieldDelegate {
-    
 }
