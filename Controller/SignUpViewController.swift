@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func switchSignInButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: false, completion: nil)
@@ -16,7 +16,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.setGradientView(colorOne: .smoothBlueBG, colorTwo: .smoothWhiteBG)
     }
 
 }
