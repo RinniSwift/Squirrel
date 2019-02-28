@@ -27,10 +27,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func signInButtonTapped(_ sender: UIButton) {
         networkManager.postAuth()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-            self.networkManager.getItemInCat()
-        })
-        
+        networkManager.getInfoInCategory()
+        networkManager.getCategoryNames()
     }
     
     
