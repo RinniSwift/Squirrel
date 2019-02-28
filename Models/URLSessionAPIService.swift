@@ -20,7 +20,7 @@ class URLSessionAPIService {
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
-        urlRequest.setValue("text/html; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         
         let session = URLSession(configuration: .default)
         
@@ -47,7 +47,7 @@ class URLSessionAPIService {
     }
     
     
-    func getItemInCat() {
+    func getItemInCat() { // ///////
         let endPoint: String = "https://squirrelaway.herokuapp.com/Make%20School"
         guard let url = URL(string: endPoint) else {
             print("error catching url")
