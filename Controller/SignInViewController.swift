@@ -9,6 +9,9 @@
 import UIKit
 
 class SignInViewController: UIViewController, UITextFieldDelegate {
+    
+    // MARK: - Variables
+    var networkManager = URLSessionAPIService()
 
     // MARK: - Outlets
     @IBOutlet weak var emailTextField: UITextField!
@@ -22,6 +25,16 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         self.present(controller, animated: false, completion: nil)
     }
     
+    @IBAction func signInButtonTapped(_ sender: UIButton) {
+        networkManager.postAuth()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            self.networkManager.getItemInCat()
+        })
+        
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,6 +46,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
     
     // MARK: - Functions
     func keyboardListenEvents() {
