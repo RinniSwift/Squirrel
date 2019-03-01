@@ -11,7 +11,6 @@ import UIKit
 
 class URLSessionAPIService {
     
-    var categories = [String]()
     
     func getCategoryNames() {
         
@@ -51,7 +50,7 @@ class URLSessionAPIService {
     }
     
     
-    func getInfoInCategory() {
+    func getInfoInCategory(completion: @escaping ([[String: Any]]) -> ()) {
         let endPoint: String = "https://squirrelaway.herokuapp.com/Make%20School"
         guard let url = URL(string: endPoint) else {
             print("error catching url")
@@ -75,21 +74,21 @@ class URLSessionAPIService {
                 return
             }
             
+            
             do {
                 guard let responseObject = try (JSONSerialization.jsonObject(with: dataResponse, options:[])) as? [[String: Any]] else {
                     print("can't type cast object to array of dictionaries")
                     return
                 }
-                print(responseObject)
+                print("response object issss: \(responseObject)")
+                
+                completion(responseObject)
             } catch let jsonError {
-                print(jsonError)
                 print(jsonError.localizedDescription)
                 print(String(data: dataResponse, encoding: String.Encoding.utf8) as Any)
             }
         }
         task.resume()
-        
-        
     }
     
     
