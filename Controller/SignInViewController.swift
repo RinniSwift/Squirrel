@@ -26,11 +26,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func signInButtonTapped(_ sender: UIButton) {
+        
         networkManager.postAuth()
         networkManager.getInfoInCategory()
         networkManager.getCategoryNames()
     }
-    
     
     
     override func viewDidLoad() {

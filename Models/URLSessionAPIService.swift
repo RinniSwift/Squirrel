@@ -11,7 +11,10 @@ import UIKit
 
 class URLSessionAPIService {
     
-    func getCategory() {
+    var categories = [String]()
+    
+    func getCategoryNames() {
+        
         let endPoint: String = "https://squirrelaway.herokuapp.com/resources"
         guard let url = URL(string: endPoint) else {
             print("error catching url")
@@ -37,6 +40,7 @@ class URLSessionAPIService {
             do {
                 let responseObject = try (JSONSerialization.jsonObject(with: dataResponse, options:[.allowFragments])) as! [String]
                 print(responseObject)
+                
             } catch let jsonError {
                 print(jsonError)
                 print(jsonError.localizedDescription)
@@ -47,7 +51,7 @@ class URLSessionAPIService {
     }
     
     
-    func getItemInCat() { // ///////
+    func getInfoInCategory() {
         let endPoint: String = "https://squirrelaway.herokuapp.com/Make%20School"
         guard let url = URL(string: endPoint) else {
             print("error catching url")
@@ -56,7 +60,7 @@ class URLSessionAPIService {
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
-        urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        urlRequest.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         
         let session = URLSession(configuration: .default)
         
@@ -72,9 +76,9 @@ class URLSessionAPIService {
             }
             
             do {
-                let responseObject = try (JSONSerialization.jsonObject(with: dataResponse, options:[]))
-                if let respObject = responseObject as? [String: Any] {
-                    print(respObject)
+                guard let responseObject = try (JSONSerialization.jsonObject(with: dataResponse, options:[])) as? [[String: Any]] else {
+                    print("can't type cast object to array of dictionaries")
+                    return
                 }
                 print(responseObject)
             } catch let jsonError {
@@ -84,6 +88,8 @@ class URLSessionAPIService {
             }
         }
         task.resume()
+        
+        
     }
     
     
