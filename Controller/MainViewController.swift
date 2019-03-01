@@ -12,9 +12,10 @@ class MainViewController: UIViewController {
 
     // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
+    var cardItems: [[String: Any]]? = nil
+    var categories: [String]? = nil
     
     // MARK: - Variables
-    // MOCK DATA
     var sampleSectionTitle: [String] = ["SPD 1.2", "Healthy Recipes", "Sports"]
     var sampleCellItem: [String: [String]] = ["SPD 1.2": ["industry contacts", "something else", "happy class", "something else"], "Healthy Recipes": ["cooking", "chicken pie", "something else"], "Sports": ["soccer", "football"]]
     
@@ -27,6 +28,7 @@ class MainViewController: UIViewController {
         collectionView.delegate = self
         
         flowLayout()
+        print(cardItems?.count)
     }
     
     // MARK: - Functions

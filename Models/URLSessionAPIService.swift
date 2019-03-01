@@ -12,7 +12,7 @@ import UIKit
 class URLSessionAPIService {
     
     
-    func getCategoryNames() {
+    func getCategoryNames(completion: @escaping ([String]) -> ()) {
         
         let endPoint: String = "https://squirrelaway.herokuapp.com/resources"
         guard let url = URL(string: endPoint) else {
@@ -39,7 +39,7 @@ class URLSessionAPIService {
             do {
                 let responseObject = try (JSONSerialization.jsonObject(with: dataResponse, options:[.allowFragments])) as! [String]
                 print(responseObject)
-                
+                completion(responseObject)
             } catch let jsonError {
                 print(jsonError)
                 print(jsonError.localizedDescription)

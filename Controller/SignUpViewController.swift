@@ -18,5 +18,4 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         view.setGradientView(colorOne: .smoothBlueBG, colorTwo: .smoothWhiteBG)
     }
-
 }

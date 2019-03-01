@@ -12,6 +12,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Variables
     var networkManager = URLSessionAPIService()
+    var arrayDict = [[String: Any]]()
+    var categoryNames = [String]()
 
     // MARK: - Outlets
     @IBOutlet weak var emailTextField: UITextField!
@@ -28,8 +30,23 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     @IBAction func signInButtonTapped(_ sender: UIButton) {
         
         networkManager.postAuth()
-        networkManager.getInfoInCategory()
-        networkManager.getCategoryNames()
+        networkManager.getInfoInCategory() { result in
+            self.arrayDict = result
+        }
+        networkManager.getCategoryNames() { result in
+            self.categoryNames = result
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+            print("arrayDict: \(self.arrayDict)")
+            
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyBoard.instantiateViewController(withIdentifier: "mainViewC") as! MainViewController
+            controller.cardItems = self.arrayDict
+            controller.categories = self.categoryNames
+            self.present(controller, animated: true, completion: nil)
+        })
+        
     }
     
     
