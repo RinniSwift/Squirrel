@@ -12,12 +12,14 @@ class MainViewController: UIViewController {
 
     // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
-    var cardItems: [[String: Any]]? = nil
+    var cardItemsMakeSchool: [[String: Any]]? = nil
+    var cardItemsFashion: [[String: Any]]? = nil
     var categories: [String]? = nil
+    var totCatinfo: [String: [[String: Any]]]? = nil
     
     // MARK: - Variables
-    var sampleSectionTitle: [String] = ["SPD 1.2", "Healthy Recipes", "Sports"]
-    var sampleCellItem: [String: [String]] = ["SPD 1.2": ["industry contacts", "something else", "happy class", "something else"], "Healthy Recipes": ["cooking", "chicken pie", "something else"], "Sports": ["soccer", "football"]]
+//    var sampleSectionTitle: [String] = ["SPD 1.2", "Healthy Recipes", "Sports"]
+//    var sampleCellItem: [String: [String]] = ["SPD 1.2": ["industry contacts", "something else", "happy class", "something else"], "Healthy Recipes": ["cooking", "chicken pie", "something else"], "Sports": ["soccer", "football"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +30,10 @@ class MainViewController: UIViewController {
         collectionView.delegate = self
         
         flowLayout()
-        print(cardItems?.count)
+        print("MainViewController: cardItem MS = \(cardItemsMakeSchool)")
+        print("MainViewController: cardItems Fashion = \(cardItemsFashion)")
+        print("MainViewController categories: \(categories)")
+        print("MainViewController total Categories = \(totCatinfo)")
     }
     
     // MARK: - Functions
@@ -43,29 +48,29 @@ class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let index = sampleSectionTitle[section]
-        return (sampleCellItem[index]?.count)!
+        let index = categories![section]
+        return (totCatinfo![index]?.count)!
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "linkCell", for: indexPath) as! LinkCollectionViewCell
         cell.backgroundColor = .white
         
-        let index = sampleSectionTitle[indexPath.section]
-        let sectItem = sampleCellItem[index]
-        cell.cellLinksTitle.text = sectItem![indexPath.item]
+        let index = categories![indexPath.section]
+        let sectItem = totCatinfo![index]
+        cell.cellLinksTitle.text = sectItem![indexPath.item]["name"] as! String
         cell.layer.cornerRadius = 8
         return cell
     }
     
     // SECTION HEADER
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return sampleSectionTitle.count
+        return categories!.count
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let attributedString = NSAttributedString(
-            string: NSLocalizedString(sampleSectionTitle[indexPath.section], comment: ""), attributes:  [NSAttributedString.Key.font: UIFont(name: "Avenir-Medium", size: 17.0)!, NSAttributedString.Key.foregroundColor : UIColor.blueText, NSAttributedString.Key.underlineStyle: 1.0]
+            string: NSLocalizedString(categories![indexPath.section], comment: ""), attributes:  [NSAttributedString.Key.font: UIFont(name: "Avenir-Medium", size: 17.0)!, NSAttributedString.Key.foregroundColor : UIColor.blueText, NSAttributedString.Key.underlineStyle: 1.0]
         )
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "categoryTitle", for: indexPath) as! CategoryTitleCollectionReusableView

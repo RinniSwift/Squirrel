@@ -12,8 +12,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Variables
     var networkManager = URLSessionAPIService()
-    var arrayDict = [[String: Any]]()
+    
+    // MARK: - Category Items
+    var arrayDictMakeSchool = [[String: Any]]()
+    var arrayDictFashion = [[String:Any]]()
     var categoryNames = [String]()
+    var totCat = [String: [[String: Any]]]()
 
     // MARK: - Outlets
     @IBOutlet weak var emailTextField: UITextField!
@@ -31,22 +35,29 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         networkManager.postAuth()
         networkManager.getInfoInCategory() { result in
-            self.arrayDict = result
+            self.arrayDictMakeSchool = result
+            self.totCat["Make School"] = result
+        }
+        networkManager.getInfoInNextCategory() { result in
+            self.arrayDictFashion = result
+            self.totCat["Fashion"] = result
         }
         networkManager.getCategoryNames() { result in
             self.categoryNames = result
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-            print("arrayDict: \(self.arrayDict)")
+            print("arrayDictMakeSchool: \(self.arrayDictMakeSchool)")
+            print("arrayDictFashion: \(self.arrayDictFashion)")
             
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyBoard.instantiateViewController(withIdentifier: "mainViewC") as! MainViewController
-            controller.cardItems = self.arrayDict
+            controller.cardItemsMakeSchool = self.arrayDictMakeSchool
+            controller.cardItemsFashion = self.arrayDictFashion
             controller.categories = self.categoryNames
+            controller.totCatinfo = self.totCat
             self.present(controller, animated: true, completion: nil)
         })
-        
     }
     
     
