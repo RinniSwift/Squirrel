@@ -23,7 +23,7 @@ class CategoryViewController: UIViewController {
     // MARK: - Variables
     var titleString: String?
     // MOCK DATA
-    var links = ["first link", "second link", "third", "fourth", "and so on", "first link", "second link", "third", "fourth"]
+//    var links = ["first link", "second link", "third", "fourth", "and so on", "first link", "second link", "third", "fourth"]
     // updates variable from when clicked the category button
     var totCatInfo: [[String: Any]]? = nil
     
@@ -56,14 +56,14 @@ class CategoryViewController: UIViewController {
 extension CategoryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return links.count
+        return totCatInfo!.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "linkCell", for: indexPath) as! CategoriesLinkCollectionViewCell
         cell.backgroundColor = .white
         cell.layer.cornerRadius = 8
-        let title = links[indexPath.item]
+        let title = totCatInfo![indexPath.item]["name"] as! String
         cell.linkTitle.text = title
         return cell
     }
@@ -72,7 +72,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         // PRESENT the LinkViewController
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "cellsLinkController") as! LinkViewController
-        controller.linkCellTitleString = links[indexPath.item]
+        controller.linkCellTitleString = totCatInfo![indexPath.item]["name"] as! String
         self.present(controller, animated: true, completion: nil)
     }
 }
