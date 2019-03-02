@@ -12,6 +12,7 @@ class CategoryTitleCollectionReusableView: UICollectionReusableView {
     
     // MARK: - Variable
     var mainVC: UIViewController? = nil
+    var catInfoForIndex: [String : [[String : Any]]]? = nil
     
     // MARK: - Outlets
     @IBOutlet weak var categoryTitleButton: UIButton!
@@ -26,6 +27,7 @@ class CategoryTitleCollectionReusableView: UICollectionReusableView {
         // instantiating the *CategoryViewController*
         let controller = storyBoard.instantiateViewController(withIdentifier: "categoryViewID") as! CategoryViewController
         controller.titleString = categorTitle
+        controller.totCatInfo = catInfoForIndex![(sender.titleLabel?.text)!]
         mainVC!.present(controller, animated: true, completion: nil)
     }
 }

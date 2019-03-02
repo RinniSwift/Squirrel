@@ -24,6 +24,8 @@ class CategoryViewController: UIViewController {
     var titleString: String?
     // MOCK DATA
     var links = ["first link", "second link", "third", "fourth", "and so on", "first link", "second link", "third", "fourth"]
+    // updates variable from when clicked the category button
+    var totCatInfo: [[String: Any]]? = nil
     
     
     override func viewDidLoad() {
@@ -36,6 +38,7 @@ class CategoryViewController: UIViewController {
         categoryTitle.text = titleString
         
         flowLayout()
+        print("CategoryViewController totCatInfo: \(totCatInfo)")
     }
     
     // MARK: - Function
