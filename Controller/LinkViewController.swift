@@ -12,9 +12,17 @@ class LinkViewController: UIViewController {
     
     // MARK: - Variables
     var linkCellTitleString: String?
+    var noteTitle: String?
+    var noteLink: String?
+    var noteNote: String?
 
     // MARK: - Outlets
-    @IBOutlet weak var linkCellTitle: UILabel!
+    @IBOutlet weak var linkCellTitle: UILabel!  // nav bar
+    @IBOutlet weak var linkTitle: UILabel!      // body
+    @IBOutlet weak var linksLink: UILabel!      // body
+    @IBOutlet weak var linksNote: UILabel!      // body
+    
+    
     
     // MARK: - Actions
     @IBAction func backButtonTapped(_ sender: UIButton) {
@@ -24,6 +32,9 @@ class LinkViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         linkCellTitle.text = linkCellTitleString
+        linkTitle.text = "Title: \(noteTitle)"
+        linksLink.text = "Link: \(noteLink)"
+        noteNote = "Note: \(noteNote)"
     }
 
 }

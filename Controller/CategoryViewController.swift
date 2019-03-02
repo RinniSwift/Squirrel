@@ -73,6 +73,9 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "cellsLinkController") as! LinkViewController
         controller.linkCellTitleString = totCatInfo![indexPath.item]["name"] as! String
+        controller.noteTitle = totCatInfo![indexPath.item]["name"] as! String
+        controller.noteLink = totCatInfo![indexPath.item]["url"] as! String
+        controller.noteNote = totCatInfo![indexPath.item]["notes"] as! String
         self.present(controller, animated: true, completion: nil)
     }
 }
