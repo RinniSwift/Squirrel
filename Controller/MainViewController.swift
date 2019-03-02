@@ -49,7 +49,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let index = categories![section]
-        return (totCatinfo![index]?.count)!
+        return (totCatinfo![index]?.count)!     // ********~!!!~*********
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
