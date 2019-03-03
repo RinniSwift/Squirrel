@@ -9,6 +9,7 @@
 import UIKit
 
 class CategoryTitleCollectionReusableView: UICollectionReusableView {
+    // MainViewController
     
     // MARK: - Variable
     var mainVC: UIViewController? = nil

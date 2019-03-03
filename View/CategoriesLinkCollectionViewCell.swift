@@ -9,6 +9,7 @@
 import UIKit
 
 class CategoriesLinkCollectionViewCell: UICollectionViewCell {
+    // CategoryViewController
     
     @IBOutlet weak var linkTitle: UILabel!
     

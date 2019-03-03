@@ -9,6 +9,7 @@
 import UIKit
 
 class ImageCollectionViewCell: UICollectionViewCell {
+    // LinkViewController
     
     @IBOutlet weak var imageInCell: UIImageView!
     

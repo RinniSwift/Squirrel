@@ -9,6 +9,7 @@
 import UIKit
 
 class LinkCollectionViewCell: UICollectionViewCell {
+    // MainViewController
     
     @IBOutlet weak var cellLinksTitle: UILabel!
     
