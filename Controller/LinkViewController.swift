@@ -17,6 +17,9 @@ class LinkViewController: UIViewController {
     var noteTitle: String?
     var noteLink: String?
     var noteNote: String?
+    
+    // MOCK DATA
+    var mockImages: [String] = ["https://www.hadzup.com/images/dribbble.png", "https://static1.squarespace.com/static/550a10cbe4b03c7ec206488b/55165997e4b0617803522a94/55165997e4b0617803522aea/1427529866738/iphone-6-6-plus-space-and-earth-blue-black-wallpaper-background-165.jpg?format=500w", "https://scstylecaster.files.wordpress.com/2014/03/8058cb6fd5c1f5c20bb4d30a2e44bf7a.jpeg", "https://www.google.com/search?biw=1680&bih=971&tbm=isch&sa=1&ei=llN7XK_tHpG5ggeGoYjIAw&q=spd&oq=spd&gs_l=img.3..0l10.12897059.12897251..12897576...0.0..0.63.170.3......1....1..gws-wiz-img.......35i39j0i67.FwIc8FtV6ew#imgrc=Dnea2HioC0PmRM:"]
 
     // MARK: - Outlets
     @IBOutlet weak var linkCellTitle: UILabel!  // nav bar
@@ -43,6 +46,24 @@ class LinkViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
+    
+//    func stringToImageData(string: String) -> Data {
+//        let session = URLSession(configuration: .default)
+//        let dataTask = session.dataTask(with: URL(string: string)!) { data, response, error in
+//            guard error == nil else {
+//                print("error turning stringToImageData")
+//                return
+//            }
+//            guard let resp = response else {
+//                print("response nil in stringToImageData")
+//                return
+//            }
+//            guard let imageData = data else {
+//                print("no data in stringToImageData")
+//                return
+//            }
+//        }
+//    }
 }
 
 
@@ -54,9 +75,19 @@ extension LinkViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? ImageCollectionViewCell
-//        cell?.imageInCell.image = UIImage(named: "mockImage")
-        cell?.imageInCell.backgroundColor = .blue
-        return cell!
+        
+        let imageStringUrl = mockImages[indexPath.item]
+        let imageUrl = URL(string: imageStringUrl)
+        let imageData = try? UIImage(data: Data(contentsOf: imageUrl!))
+        
+        
+        if imageData == nil {
+            cell?.imageInCell.image = UIImage(named: "error-image-generic")
+            return cell!
+        } else {
+            cell?.imageInCell.image = imageData!
+            return cell!
+        }
     }
     
     
