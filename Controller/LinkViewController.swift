@@ -47,23 +47,17 @@ class LinkViewController: UIViewController {
         collectionView.dataSource = self
     }
     
-//    func stringToImageData(string: String) -> Data {
-//        let session = URLSession(configuration: .default)
-//        let dataTask = session.dataTask(with: URL(string: string)!) { data, response, error in
-//            guard error == nil else {
-//                print("error turning stringToImageData")
-//                return
-//            }
-//            guard let resp = response else {
-//                print("response nil in stringToImageData")
-//                return
-//            }
-//            guard let imageData = data else {
-//                print("no data in stringToImageData")
-//                return
-//            }
-//        }
-//    }
+    func stringToImage(string: String) -> UIImage {
+        let url = URL(string: string)
+        let data = try? Data(contentsOf: url!)
+        let image = UIImage(data: data!)
+        
+        if image == nil {
+            return UIImage(named: "error-image-generic")!
+        } else {
+            return image!
+        }
+    }
 }
 
 
@@ -74,20 +68,12 @@ extension LinkViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? ImageCollectionViewCell
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageCollectionViewCell
         let imageStringUrl = mockImages[indexPath.item]
-        let imageUrl = URL(string: imageStringUrl)
-        let imageData = try? UIImage(data: Data(contentsOf: imageUrl!))
-        
-        
-        if imageData == nil {
-            cell?.imageInCell.image = UIImage(named: "error-image-generic")
-            return cell!
-        } else {
-            cell?.imageInCell.image = imageData!
-            return cell!
+        DispatchQueue.main.async {
+            cell.imageInCell.image = self.stringToImage(string: imageStringUrl)
         }
+        return cell
     }
     
     
