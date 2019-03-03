@@ -19,6 +19,12 @@ class CategoryViewController: UIViewController {
     @IBAction func backButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
+    @IBAction func addButtonTapped(_ sender: UIButton) {
+        print("adding new link inside category")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "addLinkVC") as! AddLinkViewController
+        self.present(controller, animated: true, completion: nil)
+    }
     
     // MARK: - Variables
     var titleString: String?
