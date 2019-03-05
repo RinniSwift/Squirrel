@@ -30,10 +30,10 @@ class MainViewController: UIViewController {
         collectionView.delegate = self
         
         flowLayout()
-        print("MainViewController: cardItem MS = \(cardItemsMakeSchool)")
-        print("MainViewController: cardItems Fashion = \(cardItemsFashion)")
+        print("MainViewController: cardItemsMakeSchool = \(cardItemsMakeSchool)")
+        print("MainViewController: cardItemsFashion = \(cardItemsFashion)")
         print("MainViewController categories: \(categories)")
-        print("MainViewController total Categories = \(totCatinfo)")
+        print("MainViewController totCatInfo = \(totCatinfo)")
     }
     
     // MARK: - Functions
@@ -49,7 +49,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let index = categories![section]
-        return (totCatinfo![index]?.count)!     // ********~!!!~*********
+        return (totCatinfo![index]?.count)!     // ********~!!!~********* |||
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -78,5 +78,19 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         header.mainVC = self
         header.catInfoForIndex = totCatinfo
         return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("selected item at: \(indexPath.section) section, \(indexPath.item) row")
+        
+        let section = indexPath.section
+        let row = indexPath.row
+        let stringCat = categories![section]
+        let card = totCatinfo![stringCat]![row]
+        let url = card["url"] as! String
+        
+        if let url = URL(string: url) {
+            UIApplication.shared.open(url, options: [:])
+        }
     }
 }
