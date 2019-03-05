@@ -71,19 +71,13 @@ extension LinkViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageCollectionViewCell
         let imageStringUrl = mockImages[indexPath.item]
         
+        cell.activityIndicator.startAnimating()
         DispatchQueue.main.async {
-            cell.imageInCell.image = self.stringToImage(string: imageStringUrl)
+            cell.imageInCellVar = self.stringToImage(string: imageStringUrl)
         }
+        
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let activityView = UIActivityIndicatorView(style: .gray)
-        activityView.center = CGPoint(x: cell.contentView.frame.height / 2, y: cell.contentView.frame.width / 2)
-        activityView.startAnimating()
-        cell.addSubview(activityView)
-    }
-    
     
     // SECTION
     func numberOfSections(in collectionView: UICollectionView) -> Int {

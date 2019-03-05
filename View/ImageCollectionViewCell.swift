@@ -11,6 +11,19 @@ import UIKit
 class ImageCollectionViewCell: UICollectionViewCell {
     // LinkViewController
     
+    // MARK: - Variables
+    var imageInCellVar: UIImage? {
+        didSet {
+            // Set in LinkViewController
+            imageInCell.image = imageInCellVar
+            
+            activityIndicator.stopAnimating()
+            activityIndicator.isHidden = true
+        }
+    }
+    
     @IBOutlet weak var imageInCell: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     
 }
