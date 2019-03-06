@@ -19,7 +19,8 @@ class LinkViewController: UIViewController {
     var noteNote: String?
     
     // MOCK DATA
-    var mockImages: [String] = ["https://www.hadzup.com/images/dribbble.png", "https://static1.squarespace.com/static/550a10cbe4b03c7ec206488b/55165997e4b0617803522a94/55165997e4b0617803522aea/1427529866738/iphone-6-6-plus-space-and-earth-blue-black-wallpaper-background-165.jpg?format=500w", "https://scstylecaster.files.wordpress.com/2014/03/8058cb6fd5c1f5c20bb4d30a2e44bf7a.jpeg", "https://www.google.com/search?biw=1680&bih=971&tbm=isch&sa=1&ei=llN7XK_tHpG5ggeGoYjIAw&q=spd&oq=spd&gs_l=img.3..0l10.12897059.12897251..12897576...0.0..0.63.170.3......1....1..gws-wiz-img.......35i39j0i67.FwIc8FtV6ew#imgrc=Dnea2HioC0PmRM:"]
+//    var mockImages: [String] = ["https://www.hadzup.com/images/dribbble.png", "https://static1.squarespace.com/static/550a10cbe4b03c7ec206488b/55165997e4b0617803522a94/55165997e4b0617803522aea/1427529866738/iphone-6-6-plus-space-and-earth-blue-black-wallpaper-background-165.jpg?format=500w", "https://scstylecaster.files.wordpress.com/2014/03/8058cb6fd5c1f5c20bb4d30a2e44bf7a.jpeg", "https://www.google.com/search?biw=1680&bih=971&tbm=isch&sa=1&ei=llN7XK_tHpG5ggeGoYjIAw&q=spd&oq=spd&gs_l=img.3..0l10.12897059.12897251..12897576...0.0..0.63.170.3......1....1..gws-wiz-img.......35i39j0i67.FwIc8FtV6ew#imgrc=Dnea2HioC0PmRM:"]
+    var mockImages: [String]?
 
     // MARK: - Outlets
     @IBOutlet weak var linkCellTitle: UILabel!  // nav bar
@@ -50,13 +51,20 @@ class LinkViewController: UIViewController {
     func stringToImage(string: String) -> UIImage {
         let url = URL(string: string)
         let data = try? Data(contentsOf: url!)
-        let image = UIImage(data: data!)
-        
-        if image == nil {
+        if data == nil {
+            print("image data is nil")
             return UIImage(named: "error-image-generic")!
         } else {
-            return image!
+            let image = UIImage(data: data!)
+            if image == nil {
+                return UIImage(named: "error-image-generic")!
+            } else {
+                return image!
+            }
         }
+        
+        
+        
     }
 }
 
@@ -64,12 +72,12 @@ class LinkViewController: UIViewController {
 extension LinkViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return (mockImages?.count)!
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageCollectionViewCell
-        let imageStringUrl = mockImages[indexPath.item]
+        let imageStringUrl = mockImages![indexPath.item]
         
         cell.activityIndicator.startAnimating()
         DispatchQueue.main.async {
