@@ -207,4 +207,38 @@ class URLSessionAPIService {
         }
         task.resume()
     }
+    
+    func postNewCard(name: String, urll: String, notes: String, category: String, image: String) {
+        let endPoint = "https://squirrelaway.herokuapp.com/resources"
+        guard let url = URL(string: endPoint) else {
+            print("error catching url")
+            return
+        }
+        
+        let json = ["name": name, "url": urll, "notes": notes, "category": category, "image": image]
+        let jsonData = try? JSONSerialization.data(withJSONObject: json, options: [])
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "POST"
+        urlRequest.httpBody = jsonData
+        urlRequest.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: urlRequest) { data, response, error in
+            guard let dataResponse = data else {
+                print("error receiving data")
+                return
+            }
+            guard error == nil else {
+                print("error calling endpoint")
+                return
+            }
+            
+            let responseObject = try? JSONSerialization.jsonObject(with: dataResponse, options: [])
+            if let responseObject = responseObject as? [String: String] {
+                print(responseObject)
+            }
+        }
+        task.resume()
+    }
 }
