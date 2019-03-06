@@ -23,6 +23,7 @@ class CategoryViewController: UIViewController {
         print("adding new link inside category")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "addLinkVC") as! AddLinkViewController
+        controller.categoryName = categoryTitle.text
         self.present(controller, animated: true, completion: nil)
     }
     

@@ -13,12 +13,22 @@ class AddLinkViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     // MARK: - Variables
     var imageArray = [UIImage]()
+    var categoryName: String?
     var imagePicker = UIImagePickerController()
+    var networkManager = URLSessionAPIService()
 
     // MARK: - Actions
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
+        guard titleTextField.text != nil, linkTextField.text != nil, notesTextView.text != nil, imageArray != nil else {
+            print("cant save // raise error")
+            return
+        }
+        // turn image to string
+        // grab category name
+        networkManager.postNewCard(name: titleTextField.text!, urll: linkTextField.text!, notes: notesTextView.text!, category: categoryName!, image: "https://p7011128.vo.llnwd.net/e1/wp-content/uploads/plants/originals/10341.jpg")
     }
+    
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -42,6 +52,11 @@ class AddLinkViewController: UIViewController, UIImagePickerControllerDelegate, 
         collectionView.dataSource = self
         flowLayout()
         imagePicker.delegate = self
+        categoryTitle.text = categoryName
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func flowLayout() {
