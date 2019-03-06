@@ -14,6 +14,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     var cardItemsMakeSchool: [[String: Any]]? = nil
     var cardItemsFashion: [[String: Any]]? = nil
+    var cardItemsCat: [[String: Any]]? = nil
     var categories: [String]? = nil
     var totCatinfo: [String: [[String: Any]]]? = nil
     
@@ -81,8 +82,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selected item at: \(indexPath.section) section, \(indexPath.item) row")
-        
+    
         let section = indexPath.section
         let row = indexPath.row
         let stringCat = categories![section]

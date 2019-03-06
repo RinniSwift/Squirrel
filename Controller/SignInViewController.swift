@@ -16,6 +16,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Category Items
     var arrayDictMakeSchool = [[String: Any]]()
     var arrayDictFashion = [[String:Any]]()
+    var arrayDictCat = [[String: Any]]()
     var categoryNames = [String]()
     var totCat = [String: [[String: Any]]]()
 
@@ -40,7 +41,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         }
         networkManager.getInfoInNextCategory() { result in
             self.arrayDictFashion = result
-            self.totCat["Fashion"] = result
+            self.totCat["Style"] = result
+        }
+        networkManager.getInfoInNextNextCategory() { result in
+            self.arrayDictFashion = result
+            self.totCat["Cat"] = result
         }
         networkManager.getCategoryNames() { result in
             self.categoryNames = result
@@ -49,11 +54,14 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
             print("arrayDictMakeSchool: \(self.arrayDictMakeSchool)")
             print("arrayDictFashion: \(self.arrayDictFashion)")
+            print("arrayDictCat: \(self.arrayDictCat)")
+
             
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyBoard.instantiateViewController(withIdentifier: "mainViewC") as! MainViewController
             controller.cardItemsMakeSchool = self.arrayDictMakeSchool
             controller.cardItemsFashion = self.arrayDictFashion
+            controller.cardItemsCat = self.arrayDictCat
             controller.categories = self.categoryNames
             controller.totCatinfo = self.totCat
             self.present(controller, animated: true, completion: nil)

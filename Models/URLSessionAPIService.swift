@@ -92,7 +92,7 @@ class URLSessionAPIService {
     }
     
     func getInfoInNextCategory(completion: @escaping ([[String: Any]]) -> ()) {
-        let endPoint: String = "https://squirrelaway.herokuapp.com/Fashion"
+        let endPoint: String = "https://squirrelaway.herokuapp.com/Style"
         guard let url = URL(string: endPoint) else {
         print("error catching url")
         return
@@ -132,6 +132,46 @@ class URLSessionAPIService {
         task.resume()
     }
     
+    func getInfoInNextNextCategory(completion: @escaping ([[String: Any]]) -> ()) {
+        let endPoint: String = "https://squirrelaway.herokuapp.com/Cat"
+        guard let url = URL(string: endPoint) else {
+            print("error catching url")
+            return
+        }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        
+        let session = URLSession(configuration: .default)
+        
+        let task = session.dataTask(with: urlRequest) { (data, response, error) in
+            guard error == nil else {
+                print("error calling end point")
+                return
+            }
+            
+            guard let dataResponse = data else {
+                print("error recieving data")
+                return
+            }
+            
+            
+            do {
+                guard let responseObject = try (JSONSerialization.jsonObject(with: dataResponse, options:[])) as? [[String: Any]] else {
+                    print("can't type cast object to array of dictionaries")
+                    return
+                }
+                print("response object issss: \(responseObject)")
+                
+                completion(responseObject)
+            } catch let jsonError {
+                print(jsonError.localizedDescription)
+                print(String(data: dataResponse, encoding: String.Encoding.utf8) as Any)
+            }
+        }
+        task.resume()
+    }
     
     func postAuth() {
         let endPoint = "https://squirrelaway.herokuapp.com/login"
