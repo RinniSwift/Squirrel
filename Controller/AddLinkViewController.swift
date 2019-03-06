@@ -24,14 +24,21 @@ class AddLinkViewController: UIViewController, UIImagePickerControllerDelegate, 
             print("cant save // raise error")
             return
         }
-        // turn image to string
-        // grab category name
+        
+        let item = ["name": titleTextField.text!, "url": linkTextField.text!, "notes": notesTextView.text!, "category": categoryName!, "image": "https://p7011128.vo.llnwd.net/e1/wp-content/uploads/plants/originals/10341.jpg"]
+        receivedLinkData(item: item)
+        
         networkManager.postNewCard(name: titleTextField.text!, urll: linkTextField.text!, notes: notesTextView.text!, category: categoryName!, image: "https://p7011128.vo.llnwd.net/e1/wp-content/uploads/plants/originals/10341.jpg")
+    }
+    @objc func receivedLinkData(item: [String: Any]) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "recipes"), object: nil, userInfo: item)
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
+        
     }
+    
     
     
     @IBAction func addImageButtonTapped(_ sender: UIButton) {
