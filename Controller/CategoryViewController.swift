@@ -47,10 +47,10 @@ class CategoryViewController: UIViewController {
         flowLayout()
         print("CategoryViewController totCatInfo: \(totCatInfo)")
         
-        NotificationCenter.default.addObserver(self, selector: #selector(receivedRecipes(notification:)),name: NSNotification.Name(rawValue: "linkData"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(receivedLinkData(notification:)),name: NSNotification.Name(rawValue: "linkData"), object: nil)
     }
     
-    @objc func receivedRecipes(notification: Notification) {
+    @objc func receivedLinkData(notification: Notification) {
         totCatInfo?.append(notification.userInfo as! [String : Any])
         collectionView.reloadData()
     }
