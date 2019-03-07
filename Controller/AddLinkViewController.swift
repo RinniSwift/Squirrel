@@ -26,13 +26,13 @@ class AddLinkViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         
         let item = ["name": titleTextField.text!, "url": linkTextField.text!, "notes": notesTextView.text!, "category": categoryName!, "image": "https://developers.google.com/maps/documentation/streetview/images/error-image-generic.png"]
-        receivedLinkData(item: item)
+        sendLinkData(item: item)
         
         networkManager.postNewCard(name: titleTextField.text!, urll: linkTextField.text!, notes: notesTextView.text!, category: categoryName!, image: "https://developers.google.com/maps/documentation/streetview/images/error-image-generic.png")
     }
     
-    @objc func receivedLinkData(item: [String: Any]) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "recipes"), object: nil, userInfo: item)
+    @objc func sendLinkData(item: [String: Any]) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "linkData"), object: nil, userInfo: item)
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {

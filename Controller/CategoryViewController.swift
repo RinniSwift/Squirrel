@@ -47,7 +47,7 @@ class CategoryViewController: UIViewController {
         flowLayout()
         print("CategoryViewController totCatInfo: \(totCatInfo)")
         
-        NotificationCenter.default.addObserver(self, selector: #selector(receivedRecipes(notification:)),name: NSNotification.Name(rawValue: "recipes"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(receivedRecipes(notification:)),name: NSNotification.Name(rawValue: "linkData"), object: nil)
     }
     
     @objc func receivedRecipes(notification: Notification) {
