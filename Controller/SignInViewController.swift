@@ -20,9 +20,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     var categoryNames = [String]()
     var totCat = [String: [[String: Any]]]()
 
+    
     // MARK: - Outlets
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: - Actions
     @IBAction func switchToSignUpTapped(_ sender: UIButton) {
@@ -33,6 +35,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func signInButtonTapped(_ sender: UIButton) {
+        
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        
         
         networkManager.postAuth()
         networkManager.getInfoInCategory() { result in
@@ -56,7 +62,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             print("arrayDictFashion: \(self.arrayDictFashion)")
             print("arrayDictCat: \(self.arrayDictCat)")
 
-            
+
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyBoard.instantiateViewController(withIdentifier: "mainViewC") as! MainViewController
             controller.cardItemsMakeSchool = self.arrayDictMakeSchool
@@ -66,6 +72,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             controller.totCatinfo = self.totCat
             self.present(controller, animated: true, completion: nil)
         })
+        
     }
     
     
@@ -74,6 +81,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         view.setGradientView(colorOne: .smoothBlueBG, colorTwo: .smoothWhiteBG)
         keyboardListenEvents()
+        constraintActivityIndic()
+        
+        activityIndicator.isHidden = true
         
     }
     
@@ -81,6 +91,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
+    func constraintActivityIndic() {
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+    }
     
     // MARK: - Functions
     func keyboardListenEvents() {

@@ -77,11 +77,16 @@ extension LinkViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageCollectionViewCell
+        
+        guard (mockImages?.count)! >= 1 else {
+            print("mockimages count < 1")
+            return cell
+        }
         let imageStringUrl = mockImages![indexPath.item]
         
         cell.activityIndicator.startAnimating()
         DispatchQueue.main.async {
-            cell.imageInCellVar = self.stringToImage(string: imageStringUrl)
+            cell.imageInCellVar = self.stringToImage(string: (imageStringUrl))
         }
         
         return cell

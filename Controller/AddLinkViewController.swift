@@ -25,11 +25,12 @@ class AddLinkViewController: UIViewController, UIImagePickerControllerDelegate, 
             return
         }
         
-        let item = ["name": titleTextField.text!, "url": linkTextField.text!, "notes": notesTextView.text!, "category": categoryName!, "image": "https://p7011128.vo.llnwd.net/e1/wp-content/uploads/plants/originals/10341.jpg"]
+        let item = ["name": titleTextField.text!, "url": linkTextField.text!, "notes": notesTextView.text!, "category": categoryName!, "image": "https://developers.google.com/maps/documentation/streetview/images/error-image-generic.png"]
         receivedLinkData(item: item)
         
-        networkManager.postNewCard(name: titleTextField.text!, urll: linkTextField.text!, notes: notesTextView.text!, category: categoryName!, image: "https://p7011128.vo.llnwd.net/e1/wp-content/uploads/plants/originals/10341.jpg")
+        networkManager.postNewCard(name: titleTextField.text!, urll: linkTextField.text!, notes: notesTextView.text!, category: categoryName!, image: "https://developers.google.com/maps/documentation/streetview/images/error-image-generic.png")
     }
+    
     @objc func receivedLinkData(item: [String: Any]) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "recipes"), object: nil, userInfo: item)
     }
