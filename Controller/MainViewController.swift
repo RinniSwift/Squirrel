@@ -91,8 +91,28 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let card = totCatinfo![stringCat]![row]
         let url = card["url"] as! String
         
-        if let url = URL(string: url) {
-            UIApplication.shared.open(url, options: [:])
+        
+        guard let urll = URL(string: url) else {
+            return
         }
+        
+        if UIApplication.shared.canOpenURL(urll) {
+            UIApplication.shared.open(urll, options: [:])
+        } else {
+            alertMessageNoLink()
+            return
+        }
+        
+        
+    }
+}
+
+
+extension MainViewController {
+    
+    func alertMessageNoLink() {
+        let alert = UIAlertController(title: "No Link", message: "Wrong link or no link stored.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
