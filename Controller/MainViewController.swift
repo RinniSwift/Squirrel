@@ -9,18 +9,20 @@
 import UIKit
 
 class MainViewController: UIViewController {
-
+    var modelData = ModelData()
+    
     // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     var cardItemsMakeSchool: [[String: Any]]? = nil
     var cardItemsFashion: [[String: Any]]? = nil
     var cardItemsCat: [[String: Any]]? = nil
-    var categories: [String]? = nil
+    var categories: [String]?
     var totCatinfo: [String: [[String: Any]]]? = nil
     
-    // MARK: - Variables
-//    var sampleSectionTitle: [String] = ["SPD 1.2", "Healthy Recipes", "Sports"]
-//    var sampleCellItem: [String: [String]] = ["SPD 1.2": ["industry contacts", "something else", "happy class", "something else"], "Healthy Recipes": ["cooking", "chicken pie", "something else"], "Sports": ["soccer", "football"]]
+    
+    func setUpVariables() {
+        self.categories = modelData.modelCategoryNames
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +52,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let index = categories![section]
-        return (totCatinfo![index]?.count)!     // ********~!!!~********* |||
+        return (totCatinfo![index]?.count)!
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
