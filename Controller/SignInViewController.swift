@@ -9,6 +9,7 @@
 import UIKit
 
 class SignInViewController: UIViewController, UITextFieldDelegate {
+    var modelData = ModelData()
     
     // MARK: - Variables
     var networkManager = URLSessionAPIService()
@@ -91,6 +92,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             }
             networkManager.getCategoryNames() { result in
                 self.categoryNames = result
+                self.modelData.modelCategoryNames = result
+                
             }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
@@ -164,13 +167,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
 
 extension SignInViewController {
     func shakeTextField(textfield: UITextField) {
-        let animation = CABasicAnimation(keyPath: "position")
+        let animation = CABasicAnimation(keyPath: "shake")
         animation.duration = 0.08
         animation.repeatCount = 4
         animation.autoreverses = true
         animation.fromValue = NSValue(cgPoint: CGPoint(x: textfield.center.x - 4, y: textfield.center.y))
         animation.toValue = NSValue(cgPoint: CGPoint(x: textfield.center.x + 4, y: textfield.center.y))
-        
-        textfield.layer.add(animation, forKey: "position")
+        textfield.layer.add(animation, forKey: "shake")
     }
 }
