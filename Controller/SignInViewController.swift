@@ -25,6 +25,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var cardView: UIView!
     
     // MARK: - Actions
     @IBAction func switchToSignUpTapped(_ sender: UIButton) {
@@ -36,46 +37,80 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func signInButtonTapped(_ sender: UIButton) {
         
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
-        
-        
-        networkManager.postAuth()
-        networkManager.getInfoInCategory() { result in
-            self.arrayDictMakeSchool = result
-            self.totCat["Make School"] = result
+        if emailTextField.text == "" && passwordTextField.text == "" {
+            passwordTextField.layer.cornerRadius = 5.5
+            passwordTextField.layer.borderWidth = 1.0
+            passwordTextField.layer.borderColor = UIColor.red.cgColor
+            emailTextField.layer.cornerRadius = 5.5
+            emailTextField.layer.borderWidth = 1.0
+            emailTextField.layer.borderColor = UIColor.red.cgColor
+            shakeTextField(textfield: emailTextField)
+            shakeTextField(textfield: passwordTextField)
+            
+            let deadlineTime = DispatchTime.now() + .seconds(1)
+            DispatchQueue.main.asyncAfter(deadline: deadlineTime, execute: {
+                self.passwordTextField.layer.borderWidth = 0
+                self.emailTextField.layer.borderWidth = 0
+            })
+        } else if passwordTextField.text == "" {
+            passwordTextField.layer.cornerRadius = 5.5
+            passwordTextField.layer.borderWidth = 1.0
+            passwordTextField.layer.borderColor = UIColor.red.cgColor
+            shakeTextField(textfield: passwordTextField)
+            
+            let deadlineTime = DispatchTime.now() + .seconds(1)
+            DispatchQueue.main.asyncAfter(deadline: deadlineTime, execute: {
+                self.passwordTextField.layer.borderWidth = 0
+            })
+        } else if emailTextField.text == "" {
+            emailTextField.layer.cornerRadius = 5.5
+            emailTextField.layer.borderWidth = 1.0
+            emailTextField.layer.borderColor = UIColor.red.cgColor
+            shakeTextField(textfield: emailTextField)
+            
+            let deadlineTime = DispatchTime.now() + .seconds(1)
+            DispatchQueue.main.asyncAfter(deadline: deadlineTime, execute: {
+                self.emailTextField.layer.borderWidth = 0
+            })
+        } else {
+            activityIndicator.isHidden = false
+            activityIndicator.startAnimating()
+            
+            networkManager.postAuth(username: emailTextField.text!, password: passwordTextField.text!)
+            networkManager.getInfoInCategory() { result in
+                self.arrayDictMakeSchool = result
+                self.totCat["Make School"] = result
+            }
+            networkManager.getInfoInNextCategory() { result in
+                self.arrayDictFashion = result
+                self.totCat["Style"] = result
+            }
+            networkManager.getInfoInNextNextCategory() { result in
+                self.arrayDictFashion = result
+                self.totCat["Cat"] = result
+            }
+            networkManager.getCategoryNames() { result in
+                self.categoryNames = result
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+                print("arrayDictMakeSchool: \(self.arrayDictMakeSchool)")
+                print("arrayDictFashion: \(self.arrayDictFashion)")
+                print("arrayDictCat: \(self.arrayDictCat)")
+                
+                
+                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = storyBoard.instantiateViewController(withIdentifier: "mainViewC") as! MainViewController
+                controller.cardItemsMakeSchool = self.arrayDictMakeSchool
+                controller.cardItemsFashion = self.arrayDictFashion
+                controller.cardItemsCat = self.arrayDictCat
+                controller.categories = self.categoryNames
+                controller.totCatinfo = self.totCat
+                self.present(controller, animated: true, completion: nil)
+            })
         }
-        networkManager.getInfoInNextCategory() { result in
-            self.arrayDictFashion = result
-            self.totCat["Style"] = result
-        }
-        networkManager.getInfoInNextNextCategory() { result in
-            self.arrayDictFashion = result
-            self.totCat["Cat"] = result
-        }
-        networkManager.getCategoryNames() { result in
-            self.categoryNames = result
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-            print("arrayDictMakeSchool: \(self.arrayDictMakeSchool)")
-            print("arrayDictFashion: \(self.arrayDictFashion)")
-            print("arrayDictCat: \(self.arrayDictCat)")
-
-
-            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyBoard.instantiateViewController(withIdentifier: "mainViewC") as! MainViewController
-            controller.cardItemsMakeSchool = self.arrayDictMakeSchool
-            controller.cardItemsFashion = self.arrayDictFashion
-            controller.cardItemsCat = self.arrayDictCat
-            controller.categories = self.categoryNames
-            controller.totCatinfo = self.totCat
-            self.present(controller, animated: true, completion: nil)
-        })
-        
     }
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,6 +121,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         activityIndicator.isHidden = true
         
     }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -122,5 +158,19 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         } else {
             view.frame.origin.y = 0
         }
+    }
+}
+
+
+extension SignInViewController {
+    func shakeTextField(textfield: UITextField) {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.08
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: textfield.center.x - 4, y: textfield.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: textfield.center.x + 4, y: textfield.center.y))
+        
+        textfield.layer.add(animation, forKey: "position")
     }
 }
