@@ -9,24 +9,15 @@
 import UIKit
 
 class SignInViewController: UIViewController, UITextFieldDelegate {
-    var modelData = ModelData()
     
     // MARK: - Variables
     var networkManager = URLSessionAPIService()
-    
-    // MARK: - Category Items
-    var arrayDictMakeSchool = [[String: Any]]()
-    var arrayDictFashion = [[String:Any]]()
-    var arrayDictCat = [[String: Any]]()
-    var categoryNames = [String]()
-    var totCat = [String: [[String: Any]]]()
+    var modelData = ModelData()
 
-    
     // MARK: - Outlets
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var cardView: UIView!
     
     // MARK: - Actions
     @IBAction func switchToSignUpTapped(_ sender: UIButton) {
@@ -73,44 +64,38 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             DispatchQueue.main.asyncAfter(deadline: deadlineTime, execute: {
                 self.emailTextField.layer.borderWidth = 0
             })
-        } else {
+        } else {    // VALID USER
+            
             activityIndicator.isHidden = false
             activityIndicator.startAnimating()
             
             networkManager.postAuth(username: emailTextField.text!, password: passwordTextField.text!)
-            networkManager.getInfoInCategory() { result in
-                self.arrayDictMakeSchool = result
-                self.totCat["Make School"] = result
-            }
-            networkManager.getInfoInNextCategory() { result in
-                self.arrayDictFashion = result
-                self.totCat["Style"] = result
-            }
-            networkManager.getInfoInNextNextCategory() { result in
-                self.arrayDictFashion = result
-                self.totCat["Cat"] = result
-            }
+            
             networkManager.getCategoryNames() { result in
-                self.categoryNames = result
-                self.modelData.modelCategoryNames = result
-                
+                DispatchQueue.main.async {
+                    self.modelData.modelCategoryNames = result
+                }
             }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-                print("arrayDictMakeSchool: \(self.arrayDictMakeSchool)")
-                print("arrayDictFashion: \(self.arrayDictFashion)")
-                print("arrayDictCat: \(self.arrayDictCat)")
-                
-                
+                for catName in self.modelData.modelCategoryNames! {
+                    self.networkManager.getCategoryInfo(categoryPath: catName) { result in
+                        DispatchQueue.main.async {
+                            self.modelData.totalCategoryInfo[catName] = result[catName]
+                        }
+                    }
+                }
+            })
+            
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(6), execute: {
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 let controller = storyBoard.instantiateViewController(withIdentifier: "mainViewC") as! MainViewController
-                controller.cardItemsMakeSchool = self.arrayDictMakeSchool
-                controller.cardItemsFashion = self.arrayDictFashion
-                controller.cardItemsCat = self.arrayDictCat
-                controller.categories = self.categoryNames
-                controller.totCatinfo = self.totCat
+                controller.totCatinfo = self.modelData.totalCategoryInfo
+                controller.categories = self.modelData.modelCategoryNames
                 self.present(controller, animated: true, completion: nil)
             })
+            
         }
     }
 
@@ -124,7 +109,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         activityIndicator.isHidden = true
         
     }
-    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)

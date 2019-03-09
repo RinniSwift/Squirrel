@@ -9,20 +9,14 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    var modelData = ModelData()
     
     // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
-    var cardItemsMakeSchool: [[String: Any]]? = nil
-    var cardItemsFashion: [[String: Any]]? = nil
-    var cardItemsCat: [[String: Any]]? = nil
+    
+    // MARK: - Variables
     var categories: [String]?
-    var totCatinfo: [String: [[String: Any]]]? = nil
+    var totCatinfo: [String: [CardInfo]]?
     
-    
-    func setUpVariables() {
-        self.categories = modelData.modelCategoryNames
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,21 +25,9 @@ class MainViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        
         flowLayout()
-        print("MainViewController: cardItemsMakeSchool = \(cardItemsMakeSchool)")
-        print("MainViewController: cardItemsFashion = \(cardItemsFashion)")
-        print("MainViewController categories: \(categories)")
-        print("MainViewController totCatInfo = \(totCatinfo)")
     }
     
-    // MARK: - Functions
-    func flowLayout() {
-        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        let width = (view.frame.size.width - 40) / 2
-        let height = (view.frame.size.width - 20) / 3
-        layout.itemSize = CGSize(width: width, height: height)
-    }
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -59,9 +41,9 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "linkCell", for: indexPath) as! LinkCollectionViewCell
         cell.backgroundColor = .white
         
-        let index = categories![indexPath.section]
-        let sectItem = totCatinfo![index]
-        cell.cellLinksTitle.text = sectItem![indexPath.item]["name"] as! String
+        let indexString = categories![indexPath.section]
+        let sectItem = totCatinfo![indexString]
+        cell.cellLinksTitle.text = sectItem![indexPath.item].name
         cell.layer.cornerRadius = 8
         return cell
     }
@@ -79,7 +61,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "categoryTitle", for: indexPath) as! CategoryTitleCollectionReusableView
         header.categoryTitleButton.setAttributedTitle(attributedString, for: .normal)
         header.mainVC = self
-        header.catInfoForIndex = totCatinfo
+//        header.catInfoForIndex = totCatinfo
         return header
     }
     
@@ -88,8 +70,8 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let section = indexPath.section
         let row = indexPath.row
         let stringCat = categories![section]
-        let card = totCatinfo![stringCat]![row]
-        let url = card["url"] as! String
+        let totCat = totCatinfo![stringCat]![row]
+        let url = totCat.url
         
         
         guard let urll = URL(string: url) else {
@@ -102,9 +84,8 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             alertMessageNoLink()
             return
         }
-        
-        
     }
+    
 }
 
 
@@ -114,5 +95,12 @@ extension MainViewController {
         let alert = UIAlertController(title: "No Link", message: "Wrong link or no link stored.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func flowLayout() {
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let width = (view.frame.size.width - 40) / 2
+        let height = (view.frame.size.width - 20) / 3
+        layout.itemSize = CGSize(width: width, height: height)
     }
 }
