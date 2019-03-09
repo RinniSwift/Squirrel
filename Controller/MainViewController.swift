@@ -61,7 +61,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "categoryTitle", for: indexPath) as! CategoryTitleCollectionReusableView
         header.categoryTitleButton.setAttributedTitle(attributedString, for: .normal)
         header.mainVC = self
-//        header.catInfoForIndex = totCatinfo
+        header.catInfoForIndex = totCatinfo
         return header
     }
     

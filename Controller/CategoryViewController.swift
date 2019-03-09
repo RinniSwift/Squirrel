@@ -29,10 +29,7 @@ class CategoryViewController: UIViewController {
     
     // MARK: - Variables
     var titleString: String?
-    // MOCK DATA
-//    var links = ["first link", "second link", "third", "fourth", "and so on", "first link", "second link", "third", "fourth"]
-    // updates variable from when clicked the category button
-    var totCatInfo: [[String: Any]]? = nil
+    var totCatInfo: [CardInfo]? = nil
     
     
     override func viewDidLoad() {
@@ -47,13 +44,13 @@ class CategoryViewController: UIViewController {
         flowLayout()
         print("CategoryViewController totCatInfo: \(totCatInfo)")
         
-        NotificationCenter.default.addObserver(self, selector: #selector(receivedLinkData(notification:)),name: NSNotification.Name(rawValue: "linkData"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(receivedLinkData(notification:)),name: NSNotification.Name(rawValue: "linkData"), object: nil)
     }
     
-    @objc func receivedLinkData(notification: Notification) {
-        totCatInfo?.append(notification.userInfo as! [String : Any])
-        collectionView.reloadData()
-    }
+//    @objc func receivedLinkData(notification: Notification) {
+//        totCatInfo?.append(notification.userInfo)
+//        collectionView.reloadData()
+//    }
     
     // MARK: - Function
     func flowLayout() {
@@ -77,7 +74,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "linkCell", for: indexPath) as! CategoriesLinkCollectionViewCell
         cell.backgroundColor = .white
         cell.layer.cornerRadius = 8
-        let title = totCatInfo![indexPath.item]["name"] as! String
+        let title = totCatInfo![indexPath.item].name
         cell.linkTitle.text = title
         return cell
     }
@@ -86,11 +83,11 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         // PRESENT the LinkViewController
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "cellsLinkController") as! LinkViewController
-        controller.linkCellTitleString = totCatInfo![indexPath.item]["name"] as! String
-        controller.noteTitle = totCatInfo![indexPath.item]["name"] as! String
-        controller.noteLink = totCatInfo![indexPath.item]["url"] as! String
-        controller.noteNote = totCatInfo![indexPath.item]["notes"] as! String
-        controller.mockImages = [totCatInfo![indexPath.item]["image"]] as! [String]
+        controller.linkCellTitleString = totCatInfo![indexPath.item].name
+        controller.noteTitle = totCatInfo![indexPath.item].name
+        controller.noteLink = totCatInfo![indexPath.item].url
+        controller.noteNote = totCatInfo![indexPath.item].notes
+        controller.mockImages = [totCatInfo![indexPath.item].image] as! [String]
         self.present(controller, animated: true, completion: nil)
     }
 }
