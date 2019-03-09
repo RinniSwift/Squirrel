@@ -14,6 +14,6 @@ class CardInfo: Codable {
     var name: String
     var notes: String
     var url: String
-    var images: [String?]?
+    var image: String?
     
 }
