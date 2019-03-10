@@ -69,21 +69,6 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         return header
     }
     
-    @objc func handleLongPress(gesture: UILongPressGestureRecognizer) {
-        if gesture.state != .ended {
-            return
-        }
-        let point = gesture.location(in: self.collectionView)
-        let indexPath = self.collectionView.indexPathForItem(at: point)
-        
-        if let index = indexPath {
-            var cell = self.collectionView.cellForItem(at: index)
-            print(cell)
-        } else {
-            print("could not find index path")
-        }
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
         let section = indexPath.section
@@ -121,5 +106,38 @@ extension MainViewController {
         let width = (view.frame.size.width - 40) / 2
         let height = (view.frame.size.width - 20) / 3
         layout.itemSize = CGSize(width: width, height: height)
+    }
+    
+    @objc func handleLongPress(gesture: UILongPressGestureRecognizer) {
+        if gesture.state != .ended {
+            return
+        }
+        let point = gesture.location(in: self.collectionView)
+        let indexPath = self.collectionView.indexPathForItem(at: point)
+        
+        if let index = indexPath {
+            let cell = self.collectionView.cellForItem(at: index) as! LinkCollectionViewCell
+            let nameOfLink = cell.cellLinksTitle.text
+            let categoryTitle = categories![(indexPath?.section)!]
+            let cardsInCategory = totCatinfo![categoryTitle]!
+            let cardItemTapped = cardsInCategory[index.item]
+            showActionSheet(item: cardItemTapped)
+        } else {
+            print("could not find index path")
+        }
+    }
+    
+    func showActionSheet(item: CardInfo) {
+        let alert = UIAlertController(title: "Action", message: "Please select an option", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Open", style: .default, handler: { (_) in
+            print("user selected open link")
+            }))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in
+            print("user selected delete link")
+            print("deleted: \(item.name)")
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
