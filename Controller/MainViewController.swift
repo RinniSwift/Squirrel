@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
@@ -26,6 +26,10 @@ class MainViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         flowLayout()
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gesture:)))
+        longPressGesture.delegate = self
+        collectionView.addGestureRecognizer(longPressGesture)
     }
     
 }
@@ -63,6 +67,21 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         header.mainVC = self
         header.catInfoForIndex = totCatinfo
         return header
+    }
+    
+    @objc func handleLongPress(gesture: UILongPressGestureRecognizer) {
+        if gesture.state != .ended {
+            return
+        }
+        let point = gesture.location(in: self.collectionView)
+        let indexPath = self.collectionView.indexPathForItem(at: point)
+        
+        if let index = indexPath {
+            var cell = self.collectionView.cellForItem(at: index)
+            print(cell)
+        } else {
+            print("could not find index path")
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
