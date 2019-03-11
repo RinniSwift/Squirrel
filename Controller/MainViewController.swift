@@ -121,20 +121,26 @@ extension MainViewController {
             let categoryTitle = categories![(indexPath?.section)!]
             let cardsInCategory = totCatinfo![categoryTitle]!
             let cardItemTapped = cardsInCategory[index.item]
-            showActionSheet(item: cardItemTapped)
+            showActionSheet(item: cardItemTapped, index: (indexPath?.item)!)
+            
         } else {
             print("could not find index path")
         }
     }
     
-    func showActionSheet(item: CardInfo) {
+    func showActionSheet(item: CardInfo, index: Int) {
         let alert = UIAlertController(title: "Action", message: "Please select an option", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Open", style: .default, handler: { (_) in
             print("user selected open link")
             }))
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in
-            print("user selected delete link")
             print("deleted: \(item.name)")
+            
+            let category = item.category
+            
+            self.totCatinfo![category]?.remove(at: index) // remove from totCatInfo array at index
+            self.collectionView.reloadData()
+            // TODO: send a 'DELETE' request in that category, reload the collectionview in main queue.
             
         }))
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
