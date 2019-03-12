@@ -12,6 +12,8 @@ import UIKit
 class URLSessionAPIService {
     
     
+    // 'GET' request
+    
     func getCategoryNames(completion: @escaping ([String]) -> ()) {
         
         let endPoint: String = "https://squirrelaway.herokuapp.com/resources"
@@ -50,8 +52,11 @@ class URLSessionAPIService {
     }
     
     
-    func getInfoInCategory(completion: @escaping ([[String: Any]]) -> ()) {
-        let endPoint: String = "https://squirrelaway.herokuapp.com/Make%20School"
+    func getCategoryInfo(categoryPath: String, completion: @escaping ([String: [CardInfo]]) -> ()) {
+        
+        let concatStrPath = categoryPath.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+        
+        let endPoint: String = "https://squirrelaway.herokuapp.com/\(concatStrPath)"
         guard let url = URL(string: endPoint) else {
             print("error catching url")
             return
@@ -63,9 +68,15 @@ class URLSessionAPIService {
         
         let session = URLSession(configuration: .default)
         
-        let task = session.dataTask(with: urlRequest) { (data, response, error) in
+        let task = session.dataTask(with: urlRequest) { data, response, error in
+            
             guard error == nil else {
-                print("error calling end point")
+                print(error?.localizedDescription)
+                return
+            }
+            
+            guard response != nil else {
+                print("no response")
                 return
             }
             
@@ -76,13 +87,12 @@ class URLSessionAPIService {
             
             
             do {
-                guard let responseObject = try (JSONSerialization.jsonObject(with: dataResponse, options:[])) as? [[String: Any]] else {
-                    print("can't type cast object to array of dictionaries")
-                    return
-                }
-                print("response object issss: \(responseObject)")
                 
-                completion(responseObject)
+                let responseObject = try! JSONDecoder().decode([CardInfo].self, from: dataResponse)
+                
+                let complInfo = [categoryPath: responseObject]
+                completion(complInfo)
+                
             } catch let jsonError {
                 print(jsonError.localizedDescription)
                 print(String(data: dataResponse, encoding: String.Encoding.utf8) as Any)
@@ -91,96 +101,17 @@ class URLSessionAPIService {
         task.resume()
     }
     
-    func getInfoInNextCategory(completion: @escaping ([[String: Any]]) -> ()) {
-        let endPoint: String = "https://squirrelaway.herokuapp.com/Style"
-        guard let url = URL(string: endPoint) else {
-        print("error catching url")
-        return
-        }
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "GET"
-        urlRequest.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        
-        let session = URLSession(configuration: .default)
-        
-        let task = session.dataTask(with: urlRequest) { (data, response, error) in
-        guard error == nil else {
-        print("error calling end point")
-        return
-        }
-        
-        guard let dataResponse = data else {
-        print("error recieving data")
-        return
-        }
-        
-        
-        do {
-        guard let responseObject = try (JSONSerialization.jsonObject(with: dataResponse, options:[])) as? [[String: Any]] else {
-        print("can't type cast object to array of dictionaries")
-        return
-        }
-        print("response object issss: \(responseObject)")
-        
-        completion(responseObject)
-        } catch let jsonError {
-        print(jsonError.localizedDescription)
-        print(String(data: dataResponse, encoding: String.Encoding.utf8) as Any)
-        }
-        }
-        task.resume()
-    }
     
-    func getInfoInNextNextCategory(completion: @escaping ([[String: Any]]) -> ()) {
-        let endPoint: String = "https://squirrelaway.herokuapp.com/Cat"
-        guard let url = URL(string: endPoint) else {
-            print("error catching url")
-            return
-        }
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "GET"
-        urlRequest.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        
-        let session = URLSession(configuration: .default)
-        
-        let task = session.dataTask(with: urlRequest) { (data, response, error) in
-            guard error == nil else {
-                print("error calling end point")
-                return
-            }
-            
-            guard let dataResponse = data else {
-                print("error recieving data")
-                return
-            }
-            
-            
-            do {
-                guard let responseObject = try (JSONSerialization.jsonObject(with: dataResponse, options:[])) as? [[String: Any]] else {
-                    print("can't type cast object to array of dictionaries")
-                    return
-                }
-                print("response object issss: \(responseObject)")
-                
-                completion(responseObject)
-            } catch let jsonError {
-                print(jsonError.localizedDescription)
-                print(String(data: dataResponse, encoding: String.Encoding.utf8) as Any)
-            }
-        }
-        task.resume()
-    }
+    // 'POST' request
     
-    func postAuth() {
+    func postAuth(username: String, password: String) {
         let endPoint = "https://squirrelaway.herokuapp.com/login"
         guard let url = URL(string: endPoint) else {
             print("error catching url")
             return
         }
         
-        let json = ["username": "AFJR", "password": "1234"]
+        let json = ["username": username, "password": password]
         let jsonData = try? JSONSerialization.data(withJSONObject: json, options: [])
         
         var urlRequest = URLRequest(url: url)
