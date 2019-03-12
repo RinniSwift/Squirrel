@@ -33,7 +33,6 @@ class URLSessionAPIService {
                 print("error calling end point")
                 return
             }
-            
             guard let dataResponse = data else {
                 print("error recieving data")
                 return
@@ -71,32 +70,21 @@ class URLSessionAPIService {
         let task = session.dataTask(with: urlRequest) { data, response, error in
             
             guard error == nil else {
-                print(error?.localizedDescription)
+                print(error?.localizedDescription as Any)
                 return
             }
-            
             guard response != nil else {
                 print("no response")
                 return
             }
-            
             guard let dataResponse = data else {
                 print("error recieving data")
                 return
             }
+            let responseObject = try? JSONDecoder().decode([CardInfo].self, from: dataResponse)
             
-            
-            do {
-                
-                let responseObject = try! JSONDecoder().decode([CardInfo].self, from: dataResponse)
-                
-                let complInfo = [categoryPath: responseObject]
-                completion(complInfo)
-                
-            } catch let jsonError {
-                print(jsonError.localizedDescription)
-                print(String(data: dataResponse, encoding: String.Encoding.utf8) as Any)
-            }
+            let complInfo = [categoryPath: responseObject]
+            completion(complInfo as! [String : [CardInfo]])
         }
         task.resume()
     }
