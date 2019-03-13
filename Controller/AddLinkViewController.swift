@@ -19,21 +19,28 @@ class AddLinkViewController: UIViewController, UIImagePickerControllerDelegate, 
 
     // MARK: - Actions
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
         guard titleTextField.text != nil, linkTextField.text != nil, notesTextView.text != nil, imageArray != nil else {
             print("cant save // raise error")
             return
         }
         
-        let item = ["name": titleTextField.text!, "url": linkTextField.text!, "notes": notesTextView.text!, "category": categoryName!, "image": "https://developers.google.com/maps/documentation/streetview/images/error-image-generic.png"]
-        sendLinkData(item: item)
         
-        networkManager.postNewCard(name: titleTextField.text!, urll: linkTextField.text!, notes: notesTextView.text!, category: categoryName!, image: "https://developers.google.com/maps/documentation/streetview/images/error-image-generic.png")
+        if titleTextField.text == "" {
+            titleTextField.layer.borderWidth = 1.0
+            titleTextField.layer.cornerRadius = 5.5
+            titleTextField.layer.borderColor = UIColor.red.cgColor
+        }
+        if URL(string: linkTextField.text!) == nil {
+            // TODO: set up a UIAlertView that alerts 'saved invalid url' (can still save invalid links but are notified about them)
+        }
+        
+//        networkManager.postNewCard(name: titleTextField.text!, urll: linkTextField.text!, notes: notesTextView.text!, category: categoryName!, image: "https://developers.google.com/maps/documentation/streetview/images/error-image-generic.png")
     }
     
-    @objc func sendLinkData(item: [String: Any]) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "linkData"), object: nil, userInfo: item)
-    }
+//    @objc func sendLinkData(item: [CardInfo]) {
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "linkData"), object: nil, userInfo: item)
+//    }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
