@@ -19,22 +19,23 @@ class AddLinkViewController: UIViewController, UIImagePickerControllerDelegate, 
 
     // MARK: - Actions
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-//        self.dismiss(animated: true, completion: nil)
-        guard titleTextField.text != nil, linkTextField.text != nil, notesTextView.text != nil, imageArray != nil else {
-            print("cant save // raise error")
+        if titleTextField.text != "" && linkTextField.text != "" {
+            redBorder(textfild: titleTextField)
+            redBorder(textfild: linkTextField)
+            return
+        } else if titleTextField.text == "" {
+            redBorder(textfild: titleTextField)
+            return
+        } else if linkTextField.text == "" {
+            redBorder(textfild: linkTextField)
             return
         }
         
-        
-        if titleTextField.text == "" {
-            titleTextField.layer.borderWidth = 1.0
-            titleTextField.layer.cornerRadius = 5.5
-            titleTextField.layer.borderColor = UIColor.red.cgColor
-        }
         if URL(string: linkTextField.text!) == nil {
             // TODO: set up a UIAlertView that alerts 'saved invalid url' (can still save invalid links but are notified about them)
         }
         
+        self.dismiss(animated: true, completion: nil)
 //        networkManager.postNewCard(name: titleTextField.text!, urll: linkTextField.text!, notes: notesTextView.text!, category: categoryName!, image: "https://developers.google.com/maps/documentation/streetview/images/error-image-generic.png")
     }
     
@@ -121,4 +122,16 @@ extension AddLinkViewController: UICollectionViewDelegate, UICollectionViewDataS
         return cell
     }
     
+}
+
+extension AddLinkViewController {
+    func redBorder(textfild: UITextField) {
+        textfild.layer.borderWidth = 1.0
+        textfild.layer.cornerRadius = 5.5
+        textfild.layer.borderColor = UIColor.red.cgColor
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+            textfild.layer.borderWidth = 0
+        }
+    }
 }
