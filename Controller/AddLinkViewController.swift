@@ -19,7 +19,8 @@ class AddLinkViewController: UIViewController, UIImagePickerControllerDelegate, 
 
     // MARK: - Actions
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-        if titleTextField.text != "" && linkTextField.text != "" {
+        print("taped")
+        if titleTextField.text == "" && linkTextField.text == "" {
             redBorder(textfild: titleTextField)
             redBorder(textfild: linkTextField)
             return
