@@ -32,6 +32,14 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         collectionView.addGestureRecognizer(longPressGesture)
     }
     
+    // MARK: - Actions
+    @IBAction func addCategoryButtonTapped(_ sender: UIButton) {
+        // TODO: create a UIView that lets users add the category name they want to ad
+        // TODO: send 'POST' request to backend sending category name
+        // TODO: add category string to categories array
+        // TODO: add totCatInfo[categoryname] = [] and then reload the collection view
+    }
+    
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
