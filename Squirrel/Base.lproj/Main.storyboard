@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Tp1-DE-J14">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kdR-cc-BJv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -72,19 +72,19 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hfv-hU-DlJ">
                                                         <rect key="frame" x="0.0" y="0.0" width="225" height="65"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPf-rk-zkU">
-                                                                <rect key="frame" x="0.0" y="0.0" width="42" height="23.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPf-rk-zkU">
+                                                                <rect key="frame" x="0.0" y="0.0" width="77.5" height="23.5"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                                                                 <color key="textColor" red="0.36470588235294116" green="0.36862745098039218" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WbK-5i-mQw">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="AFJR" borderStyle="roundedRect" placeholder="Enter email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WbK-5i-mQw">
                                                                 <rect key="frame" x="0.0" y="28.5" width="225" height="36.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="225" id="cwu-mI-AhW"/>
                                                                 </constraints>
-                                                                <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <color key="textColor" red="0.16862745098039217" green="0.16862745098039217" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                         </subviews>
@@ -98,14 +98,14 @@
                                                                 <color key="textColor" red="0.36470588240000001" green="0.36862745099999999" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DR0-uX-1cH">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1234" borderStyle="roundedRect" placeholder="Enter password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DR0-uX-1cH">
                                                                 <rect key="frame" x="0.0" y="28.5" width="225" height="32"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="32" id="E3U-Yz-dbG"/>
                                                                     <constraint firstAttribute="width" constant="225" id="N7H-jE-Oo5"/>
                                                                 </constraints>
-                                                                <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <color key="textColor" red="0.16862745100000001" green="0.16862745100000001" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                         </subviews>
@@ -150,14 +150,23 @@
                                     <constraint firstAttribute="height" constant="45" id="ATK-jL-UB0"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mga-rB-cnV">
+                                <rect key="frame" x="172.5" y="318.5" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="OcX-UE-yyE"/>
+                                    <constraint firstAttribute="height" constant="30" id="k4W-0g-n2i"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Pwo-Iy-MQD" firstAttribute="centerX" secondItem="rDK-v6-yje" secondAttribute="centerX" id="2OL-ke-DeP"/>
                             <constraint firstItem="nGd-8L-aUR" firstAttribute="centerX" secondItem="rDK-v6-yje" secondAttribute="centerX" id="2PE-Zg-jv3"/>
                             <constraint firstItem="fCN-u0-Pe1" firstAttribute="top" secondItem="NFj-kZ-jBb" secondAttribute="top" constant="18" id="7mc-2m-6MN"/>
+                            <constraint firstItem="mga-rB-cnV" firstAttribute="centerX" secondItem="rDK-v6-yje" secondAttribute="centerX" id="BTf-Mt-Nlq"/>
                             <constraint firstItem="Pwo-Iy-MQD" firstAttribute="centerX" secondItem="rDK-v6-yje" secondAttribute="centerX" id="Io9-ZR-a2i"/>
                             <constraint firstItem="fCN-u0-Pe1" firstAttribute="leading" secondItem="NFj-kZ-jBb" secondAttribute="leading" constant="37" id="LvY-pO-1wd"/>
+                            <constraint firstItem="mga-rB-cnV" firstAttribute="centerY" secondItem="rDK-v6-yje" secondAttribute="centerY" id="QX1-8u-eSA"/>
                             <constraint firstItem="Pwo-Iy-MQD" firstAttribute="leading" secondItem="NFj-kZ-jBb" secondAttribute="leading" constant="35" id="Wis-1u-Arp"/>
                             <constraint firstItem="Pwo-Iy-MQD" firstAttribute="centerY" secondItem="rDK-v6-yje" secondAttribute="centerY" id="aj9-4t-iC2"/>
                             <constraint firstItem="NFj-kZ-jBb" firstAttribute="bottom" secondItem="nGd-8L-aUR" secondAttribute="bottom" constant="10" id="eNL-bf-2gT"/>
@@ -166,6 +175,7 @@
                         <viewLayoutGuide key="safeArea" id="NFj-kZ-jBb"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="mga-rB-cnV" id="egy-xf-Jnh"/>
                         <outlet property="emailTextField" destination="WbK-5i-mQw" id="nS9-w7-a0w"/>
                         <outlet property="passwordTextField" destination="DR0-uX-1cH" id="jmA-qo-IZn"/>
                     </connections>
@@ -190,7 +200,7 @@
                                 </constraints>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lcv-LC-bKE">
-                                <rect key="frame" x="0.0" y="130" width="375" height="537"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="579"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="S4B-bY-Keq">
                                     <size key="itemSize" width="111" height="112"/>
@@ -250,15 +260,28 @@
                                     </connections>
                                 </collectionReusableView>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y6x-Yx-qOy">
+                                <rect key="frame" x="314" y="35" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="1Yw-5g-AI4"/>
+                                    <constraint firstAttribute="width" constant="45" id="gJm-m9-sCw"/>
+                                </constraints>
+                                <state key="normal" image="add"/>
+                                <connections>
+                                    <action selector="addCategoryButtonTapped:" destination="dLa-um-a9b" eventType="touchUpInside" id="0Tc-O8-hlW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="lcv-LC-bKE" firstAttribute="trailing" secondItem="1qd-4F-u0J" secondAttribute="trailing" id="0Xx-Om-fOL"/>
                             <constraint firstItem="hBg-mL-pXF" firstAttribute="leading" secondItem="1qd-4F-u0J" secondAttribute="leading" constant="16" id="4jk-F6-OSs"/>
                             <constraint firstItem="lcv-LC-bKE" firstAttribute="bottom" secondItem="1qd-4F-u0J" secondAttribute="bottom" id="Tks-Yg-hDF"/>
+                            <constraint firstItem="1qd-4F-u0J" firstAttribute="trailing" secondItem="y6x-Yx-qOy" secondAttribute="trailing" constant="16" id="XGB-qa-rfO"/>
                             <constraint firstItem="hBg-mL-pXF" firstAttribute="top" secondItem="1qd-4F-u0J" secondAttribute="top" constant="15" id="ZH1-8P-oSO"/>
+                            <constraint firstItem="y6x-Yx-qOy" firstAttribute="top" secondItem="1qd-4F-u0J" secondAttribute="top" constant="15" id="i0U-Bm-GoP"/>
                             <constraint firstItem="lcv-LC-bKE" firstAttribute="leading" secondItem="1qd-4F-u0J" secondAttribute="leading" id="qVb-5J-onz"/>
-                            <constraint firstItem="lcv-LC-bKE" firstAttribute="top" secondItem="hBg-mL-pXF" secondAttribute="bottom" constant="50" id="zVv-vQ-lnT"/>
+                            <constraint firstItem="lcv-LC-bKE" firstAttribute="top" secondItem="hBg-mL-pXF" secondAttribute="bottom" constant="8" id="zVv-vQ-lnT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1qd-4F-u0J"/>
                     </view>
@@ -432,7 +455,7 @@
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jar-Zl-udk">
                                 <rect key="frame" x="15" y="293" width="345" height="374"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="374" id="FEt-F7-dRA"/>
                                 </constraints>
@@ -450,18 +473,24 @@
                                             <rect key="frame" x="0.0" y="0.0" width="113" height="122"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error-image-generic" translatesAutoresizingMaskIntoConstraints="NO" id="zZT-bf-n2J">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zZT-bf-n2J">
                                                     <rect key="frame" x="0.0" y="0.0" width="113" height="122"/>
                                                 </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="tjS-tw-JIr">
+                                                    <rect key="frame" x="46.5" y="51" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="zZT-bf-n2J" firstAttribute="top" secondItem="d6h-KV-tOv" secondAttribute="top" id="HZh-3b-Ed7"/>
+                                            <constraint firstItem="tjS-tw-JIr" firstAttribute="centerY" secondItem="d6h-KV-tOv" secondAttribute="centerY" id="QDf-6P-cUt"/>
                                             <constraint firstItem="zZT-bf-n2J" firstAttribute="leading" secondItem="d6h-KV-tOv" secondAttribute="leading" id="YZx-G1-3lX"/>
                                             <constraint firstAttribute="trailing" secondItem="zZT-bf-n2J" secondAttribute="trailing" id="a41-Vo-Bgz"/>
+                                            <constraint firstItem="tjS-tw-JIr" firstAttribute="centerX" secondItem="d6h-KV-tOv" secondAttribute="centerX" id="lQI-MA-qn0"/>
                                             <constraint firstAttribute="bottom" secondItem="zZT-bf-n2J" secondAttribute="bottom" id="q6I-Bv-2PV"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="activityIndicator" destination="tjS-tw-JIr" id="GqY-U1-Kkc"/>
                                             <outlet property="imageInCell" destination="zZT-bf-n2J" id="ick-Vg-Ply"/>
                                         </connections>
                                     </collectionViewCell>
@@ -841,7 +870,7 @@
                                             <action selector="cancelButtonTapped:" destination="Tp1-DE-J14" eventType="touchUpInside" id="Fe4-iI-bNu"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDK-SL-cs0">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDK-SL-cs0">
                                         <rect key="frame" x="53" y="0.0" width="240" height="26"/>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="19"/>
                                         <color key="textColor" red="0.20784313730000001" green="0.33333333329999998" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -947,6 +976,9 @@
                                             <constraint firstAttribute="height" constant="28" id="N7z-hx-dIZ"/>
                                         </constraints>
                                         <state key="normal" image="addImage"/>
+                                        <connections>
+                                            <action selector="addImageButtonTapped:" destination="Tp1-DE-J14" eventType="touchUpInside" id="7J8-oZ-1Jb"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -1020,6 +1052,7 @@
     </scenes>
     <resources>
         <image name="acorn" width="100" height="100"/>
+        <image name="add" width="100" height="100"/>
         <image name="addIcon" width="100" height="100"/>
         <image name="addImage" width="500" height="500"/>
         <image name="backBlue" width="100" height="100"/>
