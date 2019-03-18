@@ -11,7 +11,7 @@ import Foundation
 class ModelData {
     
     var modelCategoryNames: [String]?
-    var totalCategoryInfo: [String: [CardInfo]]?
+    var totalCategoryInfo: [String: [CardInfo]] = [:]
     
 }
 
