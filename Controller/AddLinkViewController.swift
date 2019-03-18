@@ -19,7 +19,8 @@ class AddLinkViewController: UIViewController, UIImagePickerControllerDelegate, 
 
     // MARK: - Actions
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-        print("taped")
+        // TODO: setup UIAlertView when users dont save a url or url is invalid.
+        
         if titleTextField.text == "" && linkTextField.text == "" {
             redBorder(textfild: titleTextField)
             redBorder(textfild: linkTextField)
@@ -32,23 +33,27 @@ class AddLinkViewController: UIViewController, UIImagePickerControllerDelegate, 
             return
         }
         
-        if URL(string: linkTextField.text!) == nil {
-            // TODO: set up a UIAlertView that alerts 'saved invalid url' (can still save invalid links but are notified about them)
+        if imageArray.isEmpty {
+            let itemAdded = CardInfo(name: titleTextField.text!, notes: notesTextView.text!, url: linkTextField.text!, image: "https://developers.google.com/maps/documentation/streetview/images/error-image-generic.png", category: categoryTitle.text!)
+            sendLinkData(item: ["added": itemAdded])
+        } else {
+            let itemAdded = CardInfo(name: titleTextField.text!, notes: notesTextView.text!, url: linkTextField.text!, image: "https://developers.google.com/maps/documentation/streetview/images/error-image-generic.png ", category: categoryName!)
+            sendLinkData(item: ["added": itemAdded])
         }
         
         self.dismiss(animated: true, completion: nil)
-//        networkManager.postNewCard(name: titleTextField.text!, urll: linkTextField.text!, notes: notesTextView.text!, category: categoryName!, image: "https://developers.google.com/maps/documentation/streetview/images/error-image-generic.png")
+        networkManager.postNewCard(name: titleTextField.text!, urll: linkTextField.text!, notes: notesTextView.text!, category: categoryName!, image: "https://developers.google.com/maps/documentation/streetview/images/error-image-generic.png")
     }
     
-//    @objc func sendLinkData(item: [CardInfo]) {
-//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "linkData"), object: nil, userInfo: item)
-//    }
+    
+    @objc func sendLinkData(item: [String: CardInfo]) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "linkData"), object: nil, userInfo: item)
+    }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
         
     }
-    
     
     
     @IBAction func addImageButtonTapped(_ sender: UIButton) {

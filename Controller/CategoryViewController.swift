@@ -44,13 +44,14 @@ class CategoryViewController: UIViewController {
         flowLayout()
         print("CategoryViewController totCatInfo: \(totCatInfo)")
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(receivedLinkData(notification:)),name: NSNotification.Name(rawValue: "linkData"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(receivedLinkData(notification:)),name: NSNotification.Name(rawValue: "linkData"), object: nil)
     }
     
-//    @objc func receivedLinkData(notification: Notification) {
-//        totCatInfo?.append(notification.userInfo)
-//        collectionView.reloadData()
-//    }
+    @objc func receivedLinkData(notification: Notification) {
+        print(notification.userInfo!["added"])
+        totCatInfo?.append(notification.userInfo!["added"] as! CardInfo)
+        collectionView.reloadData()
+    }
     
     // MARK: - Function
     func flowLayout() {
@@ -87,7 +88,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         controller.noteTitle = totCatInfo![indexPath.item].name
         controller.noteLink = totCatInfo![indexPath.item].url
         controller.noteNote = totCatInfo![indexPath.item].notes
-        controller.mockImages = [totCatInfo![indexPath.item].image] as! [String]
+        controller.images = ([totCatInfo![indexPath.item].image] as! [String])
         self.present(controller, animated: true, completion: nil)
     }
 }
