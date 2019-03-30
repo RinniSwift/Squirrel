@@ -7,7 +7,7 @@ Check the [Squirrel Away](https://squirrel-env.herokuapp.com/) live link and che
 
 
 ## Screen Casts
-<img src="Images/appScreenshots.png" width="900" height="370" />
+<img src="Images/appScreenshots.png" width="730" height="350" />
 
 ## App Icon
 <img src="Images/appIcon.png" width="100" height="100" />
