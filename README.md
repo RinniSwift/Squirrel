@@ -19,15 +19,18 @@ Check the [Squirrel Away](https://squirrel-env.herokuapp.com/) live link and che
 **[Anna Pawl](https://github.com/AnniePawl)**\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Roles:** Project Manager, Frontend Lead, UX and UI Designer\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Technologies:** Node, Express, Handlebars, Adobe Illustrator, Adobe Xd
-\\
+\
+\
 **[Rinni Swift](https://github.com/RinniSwift)**\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Roles:** Lead iOS Developer, UX and UI Designer\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Technologies:** Swift, Xcode, Adobe Xd
-\\
+\
+\
 **[Kuan-Ying Fang](https://github.com/kfa408)**\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Roles:** Backend Lead, Git Master\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Technologies:** MongoDB, Node.js, Express
-\\
+\
+\
 **[Jason Romulus](https://github.com/jasonromulus)**\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Roles:** Backend Engineer\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Technologies:** Node.js, AWS 
@@ -35,7 +38,7 @@ Check the [Squirrel Away](https://squirrel-env.herokuapp.com/) live link and che
 
 
 ## Color Scheme
-![color swatches](Images/colorSwatches.png)
+*insert color swatches*
 
 1. Purple App Color: #8A89F0
 2. Pink App Color: #FD94AE
@@ -47,7 +50,8 @@ Check the [Squirrel Away](https://squirrel-env.herokuapp.com/) live link and che
 
 ---
 ### Contact Me
-**Rinni Swift** *Lead iOS Developer, UI and UX designer*\
+**Rinni Swift**\
+*Lead iOS Developer, UI and UX designer*\
 Check my [GitHub profile](https://github.com/RinniSwift)\
 Connect with me on [LinkedIn](https://www.linkedin.com/in/rinni-swift-07b6b8169/)\
 Check my [Portfolio](https://www.makeschool.com/portfolio/RinniSwift)
