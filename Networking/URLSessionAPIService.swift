@@ -40,7 +40,9 @@ class URLSessionAPIService {
             do {
                 let responseObject = try (JSONSerialization.jsonObject(with: dataResponse, options:[.allowFragments])) as! [String]
                 print(responseObject)
-                completion(responseObject)
+                DispatchQueue.main.async {
+                    completion(responseObject)
+                }
             } catch let jsonError {
                 print(jsonError)
                 print(jsonError.localizedDescription)

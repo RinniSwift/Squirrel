@@ -30,40 +30,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     @IBAction func signInButtonTapped(_ sender: UIButton) {
         
         if emailTextField.text == "" && passwordTextField.text == "" {
-            passwordTextField.layer.cornerRadius = 5.5
-            passwordTextField.layer.borderWidth = 1.0
-            passwordTextField.layer.borderColor = UIColor.red.cgColor
-            emailTextField.layer.cornerRadius = 5.5
-            emailTextField.layer.borderWidth = 1.0
-            emailTextField.layer.borderColor = UIColor.red.cgColor
+            passwordTextField.redOutline()
+            emailTextField.redOutline()
             shakeTextField(textfield: emailTextField)
             shakeTextField(textfield: passwordTextField)
-            
-            let deadlineTime = DispatchTime.now() + .seconds(1)
-            DispatchQueue.main.asyncAfter(deadline: deadlineTime, execute: {
-                self.passwordTextField.layer.borderWidth = 0
-                self.emailTextField.layer.borderWidth = 0
-            })
         } else if passwordTextField.text == "" {
-            passwordTextField.layer.cornerRadius = 5.5
-            passwordTextField.layer.borderWidth = 1.0
-            passwordTextField.layer.borderColor = UIColor.red.cgColor
+            passwordTextField.redOutline()
             shakeTextField(textfield: passwordTextField)
-            
-            let deadlineTime = DispatchTime.now() + .seconds(1)
-            DispatchQueue.main.asyncAfter(deadline: deadlineTime, execute: {
-                self.passwordTextField.layer.borderWidth = 0
-            })
         } else if emailTextField.text == "" {
-            emailTextField.layer.cornerRadius = 5.5
-            emailTextField.layer.borderWidth = 1.0
-            emailTextField.layer.borderColor = UIColor.red.cgColor
+            emailTextField.redOutline()
             shakeTextField(textfield: emailTextField)
             
-            let deadlineTime = DispatchTime.now() + .seconds(1)
-            DispatchQueue.main.asyncAfter(deadline: deadlineTime, execute: {
-                self.emailTextField.layer.borderWidth = 0
-            })
         } else {    // VALID USER
             
             activityIndicator.isHidden = false
@@ -72,21 +49,16 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             networkManager.postAuth(username: emailTextField.text!, password: passwordTextField.text!)
             
             networkManager.getCategoryNames() { result in
-                DispatchQueue.main.async {
-                    self.modelData.modelCategoryNames = result
-                }
+                self.modelData.modelCategoryNames = result
             }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
                 for catName in self.modelData.modelCategoryNames! {
                     self.networkManager.getCategoryInfo(categoryPath: catName) { result in
-                        DispatchQueue.main.async {
-                            self.modelData.totalCategoryInfo[catName] = result[catName]
-                        }
+                        self.modelData.totalCategoryInfo[catName] = result[catName]
                     }
                 }
             })
-            
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(6), execute: {
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
