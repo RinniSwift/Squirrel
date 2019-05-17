@@ -30,16 +30,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     @IBAction func signInButtonTapped(_ sender: UIButton) {
         
         if emailTextField.text == "" && passwordTextField.text == "" {
-            passwordTextField.redOutline()
-            emailTextField.redOutline()
-            shakeTextField(textfield: emailTextField)
-            shakeTextField(textfield: passwordTextField)
+            handleEmptyTextfield(textfield: emailTextField)
+            handleEmptyTextfield(textfield: passwordTextField)
         } else if passwordTextField.text == "" {
-            passwordTextField.redOutline()
-            shakeTextField(textfield: passwordTextField)
+            handleEmptyTextfield(textfield: passwordTextField)
         } else if emailTextField.text == "" {
-            emailTextField.redOutline()
-            shakeTextField(textfield: emailTextField)
+            handleEmptyTextfield(textfield: emailTextField)
             
         } else {    // VALID USER
             
@@ -130,5 +126,10 @@ extension SignInViewController {
         animation.fromValue = NSValue(cgPoint: CGPoint(x: textfield.center.x - 4, y: textfield.center.y))
         animation.toValue = NSValue(cgPoint: CGPoint(x: textfield.center.x + 4, y: textfield.center.y))
         textfield.layer.add(animation, forKey: "shake")
+    }
+    
+    func handleEmptyTextfield(textfield: UITextField) {
+        textfield.redOutline()
+        shakeTextField(textfield: textfield)
     }
 }
