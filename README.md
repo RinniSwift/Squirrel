@@ -2,8 +2,8 @@
 
 *iOS application and website that aims to help users cache and manage an assortment of online resources from important links and forms to inspirational images and custom notes.*
 
-[Pitch Deck Slides](https://docs.google.com/presentation/d/1ZklSnnp-zRMfFw25vopJZ020I-NSlppPIbStpQbayfs/edit?usp=sharing)
-Check the [Squirrel Away](https://squirrel-env.herokuapp.com/) live link and check the [website repo here](https://github.com/AnniePawl/SPD1.3).
+[Pitch Deck Slides](https://docs.google.com/presentation/d/1ZklSnnp-zRMfFw25vopJZ020I-NSlppPIbStpQbayfs/edit?usp=sharing)\
+Check the Squirrel Away live link [here](https://squirrel-env.herokuapp.com/) and [here](https://squirrelaway.herokuapp.com/) and check the [website repo here](https://github.com/AnniePawl/SPD1.3).
 
 
 ## Screen Casts
